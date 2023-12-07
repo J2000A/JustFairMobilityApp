@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#ff8a00</color>
+    <color name="colorPrimaryVariant">#E6E6E6</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <color name="colorSecondary">#42a5f5</color>
+    <color name="colorSecondaryVariant">#0077c2</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorSurfaceVariant">#FAFAFA</color>
+    <color name="colorOnSurface">#5A5A5A</color>
+
+    <color name="colorError">#CA2700</color>
+    <color name="colorOnError">#FFFFFF</color>
+
+    <color name="colorHomeAction">#7BB8EA</color>
+    <color name="colorHomeActionDisabled">#3E3E3E</color>
+    <color name="colorHomeActivityIcon">@color/colorOnSecondary</color>
+    <color name="colorHomeActivityIconDisabled">#FFFFFF</color>
+    <color name="colorHomeActivityText">@color/colorOnSurface</color>
+    <color name="colorHomeActionAccent">#F2FFFFFF</color>
+
+    <color name="colorSeperator">@color/colorPrimaryVariant</color>
+
+    <color name="colorButtonOnSurface">#EAEAEA</color>
+
+    <color name="dialogButtonsBackground">@color/lightGrey</color>
+
+    <color name="black" tools:keep="@color/black">#FF000000</color>
+    <color name="darkGrey">#323232</color>
+    <color name="midGrey">#7C7C7C</color>
+    <color name="lightGrey">#ECECEC</color>
+    <color name="white" tools:keep="@color/white">#FFFFFF</color>
+    <color name="whiteLight" tools:keep="@color/whiteLight">#F6F6F6</color>
+
+</resources>

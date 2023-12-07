@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small">8dp</dimen>
+    <dimen name="large">16dp</dimen>
+    <dimen name="extraLarge">24dp</dimen>
+
+    <dimen name="cornerRadius">18dp</dimen>
+
+    <dimen name="marginCardView">@dimen/small</dimen>
+</resources>

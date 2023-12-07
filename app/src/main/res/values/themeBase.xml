@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorSecondaryVariant</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+
+        <item name="android:statusBarColor">@color/colorSecondaryVariant</item>
+        <item name="android:navigationBarColor">@color/colorOnPrimary</item>
+
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <!-- Text styles-->
+    <style name="textHead">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+        <item name="android:textColor">@color/colorOnPrimary</item>
+        <item name="android:paddingTop">@dimen/small</item>
+        <item name="android:paddingBottom">@dimen/small</item>
+        <item name="android:paddingLeft">@dimen/large</item>
+        <item name="android:paddingRight">@dimen/large</item>
+    </style>
+
+    <style name="textSubhead" parent="@android:style/Widget.TextView">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.SearchResult.Subtitle</item>
+        <item name="android:textColor">@color/colorOnSurface</item>
+    </style>
+
+    <style name="textBeschreibung">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="textNotification">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorOnSecondary</item>
+    </style>
+
+    <!-- Separator -->
+    <style name="separator">
+        <item name="android:layout_height">2dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/large</item>
+        <item name="android:layout_marginRight">@dimen/large</item>
+        <item name="android:layout_marginBottom">@dimen/small</item>
+        <item name="android:layout_marginTop">@dimen/small</item>
+        <item name="cardBackgroundColor">@color/colorSeperator</item>
+        <item name="cardCornerRadius">1dp</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <!-- Text input styles -->
+    <style name="textInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    </style>
+
+    <style name="textInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">100dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="textInputMultipleLines" parent="textInput">
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <!-- Buttons -->
+    <style name="button" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">@dimen/cornerRadius</item>
+        <item name="android:layout_marginLeft">@dimen/small</item>
+        <item name="android:layout_marginRight">@dimen/small</item>
+    </style>
+
+    <style name="buttonError" parent="buttonSelectedOnSurface">
+        <item name="backgroundTint">@color/colorError</item>
+        <item name="android:textColor">@color/colorOnError</item>
+    </style>
+
+    <style name="buttonImageOnPrimary" parent="button" tools:keep="@style/buttonImageOnPrimary">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:paddingLeft">@dimen/small</item>
+    </style>
+
+    <style name="buttonImageOnSurface" parent="buttonImageOnPrimary" tools:keep="@style/buttonImageOnSurface">
+        <item name="backgroundTint">@color/colorPrimaryVariant</item>
+    </style>
+
+    <style name="buttonImageOnSurfaceLarge" parent="buttonImageOnSurface" tools:keep="@style/buttonImageOnSurfaceLarge">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="cornerRadius">60dp</item>
+        <item name="iconPadding">20dp</item>
+    </style>
+
+    <style name="buttonMainAction" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/colorSecondaryVariant</item>
+        <item name="rippleColor">@color/colorSecondaryVariant</item>
+    </style>
+
+    <!-- Card Views -->
+    <style name="cardView" parent="CardView.Light">
+        <item name="cardElevation">12dp</item>
+        <item name="cardCornerRadius">@dimen/small</item>
+        <item name="android:layout_marginLeft">@dimen/marginCardView</item>
+        <item name="android:layout_marginRight">@dimen/marginCardView</item>
+        <item name="android:layout_marginBottom">@dimen/marginCardView</item>
+        <item name="cardBackgroundColor">@color/colorSurface</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="cardViewNotification" parent="cardView">
+        <item name="cardBackgroundColor">@color/colorSecondaryVariant</item>
+        <item name="android:layout_marginLeft">@dimen/large</item>
+        <item name="android:layout_marginRight">@dimen/large</item>
+    </style>
+
+    <style name="cardViewHome" parent="cardView">
+        <item name="cardElevation">@dimen/large</item>
+    </style>
+
+    <style name="cardViewSurface" parent="CardView.Light">
+        <item name="cardElevation">3dp</item>
+        <item name="cardCornerRadius">@dimen/large</item>
+        <!-- Margin Set in ActivityRoot -->
+        <item name="cardBackgroundColor">@color/colorSurfaceVariant</item>
+        <item name="android:layout_marginLeft">@dimen/small</item>
+        <item name="android:layout_marginRight">@dimen/small</item>
+        <item name="android:layout_marginBottom">@dimen/small</item>
+    </style>
+
+    <!-- Icons -->
+    <style name="icons">
+        <item name="android:padding">@dimen/small</item>
+        <item name="tint">@color/colorOnPrimary</item>
+    </style>
+
+    <!-- ButtonDesigner.class-->
+    <style name="buttonSelectedOnPrimary" parent="button">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+        <item name="android:padding">@dimen/small</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="backgroundTint">@color/colorSecondary</item>
+    </style>
+
+    <style name="buttonNotification" parent="buttonUnselectedOnSurface">
+        <item name="backgroundTint">@color/colorButtonOnSurface</item>
+        <item name="android:textColor">@color/colorSecondaryVariant</item>
+    </style>
+
+    <style name="buttonUnselectedOnPrimary" parent="buttonSelectedOnPrimary">
+        <item name="backgroundTint">@color/colorButtonOnSurface</item>
+    </style>
+
+    <style name="buttonSelectedOnSurface" parent="buttonSelectedOnPrimary">
+        <item name="backgroundTint">@color/colorSecondaryVariant</item>
+        <item name="android:textColor">@color/colorOnPrimary</item>
+    </style>
+
+    <style name="buttonUnselectedOnSurface" parent="buttonUnselectedOnPrimary">
+        <item name="android:textColor">@color/colorSecondaryVariant</item>
+        <item name="iconTint">@color/colorSecondaryVariant</item>
+        <item name="backgroundTint">@color/colorButtonOnSurface</item>
+    </style>
+
+    <style name="buttonCheckedOnSurface" parent="buttonSelectedOnSurface" tools:keep="@style/buttonCheckedOnSurface">
+        <item name="icon">@drawable/icon_baseline_check_box_24</item>
+        <item name="iconTint">@color/white</item>
+    </style>
+
+    <style name="buttonUncheckedOnSurface" parent="buttonUnselectedOnSurface" tools:keep="@style/buttonUncheckedOnSurface">
+        <item name="icon">@drawable/icon_baseline_check_box_outline_blank_24</item>
+        <item name="iconTint">@color/colorSecondaryVariant</item>
+    </style>
+
+    <style name="buttonCheckedOnPrimary" parent="buttonSelectedOnPrimary" tools:keep="@style/buttonCheckedOnPrimary">
+        <item name="icon">@drawable/icon_baseline_check_box_24</item>
+        <item name="iconTint">@color/colorOnPrimary</item>
+    </style>
+
+    <style name="buttonUncheckedOnPrimary" parent="buttonUnselectedOnPrimary" tools:keep="@style/buttonUncheckedOnPrimary">
+        <item name="icon">@drawable/icon_baseline_check_box_outline_blank_24</item>
+        <item name="iconTint">@color/colorOnPrimary</item>
+    </style>
+</resources>

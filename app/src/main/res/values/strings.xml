@@ -1,0 +1,132 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- VersionInfo -->
+    <integer name="version_info_counter">0</integer>
+    <string name="version_info">
+        Neue Version:
+        \n\n•
+    </string>
+
+    <!-- GENERAL -->
+    <string name="app_name">Flugplatz App</string>
+    <string name="app_name_split">Flugplatz\nApp</string>
+    <string name="app_name_icon">Flugplatz</string>
+    <string name="separation_doubles">,</string>
+    <string name="ok">OK</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="canceled">Abgebrochen</string>
+    <string name="delete">Löschen</string>
+    <string name="deleted">Gelöscht</string>
+    <string name="save">Speichern</string>
+    <string name="saved">Gespeichert</string>
+    <string name="success">Erfolgreich</string>
+    <string name="info">Info</string>
+    <string name="error">Fehler</string>
+    <string name="invalid">Ungültig</string>
+    <string name="hint">Hinweis</string>
+    <string name="needed">Benötigt</string>
+    <string name="sync">Synchronisieren</string>
+    <string name="sync_start">Synchronisierung gestartet</string>
+    <string name="sync_success">Synchronisierung erfolgreich</string>
+    <string name="search">Suche</string>
+    <string name="inDevelopment">Dieses Feature ist noch in Entwicklung</string>
+    <string name="unknown">Unbekannt</string>
+    <string name="back">Zurück</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="add">Hinzufügen</string>
+    <string name="swap_clubs">Verein wechseln</string>
+    <string name="back_confirmation">Zurück?</string>
+    <string name="back_confirmation_text">Alle Änderungen gehen verloren!</string>
+    <string name="back_confirmation_action">Zurück</string>
+    <string name="error_unknown">Unbekannter Fehler</string>
+    <string name="error_google_sign_in_unavailable">Google Login nicht verfügbar</string>
+    <string name="error_no_internet">Keine Internetverbindung</string>
+    <string name="error_unknown_host">Keine Internetverbindung oder unbekannter Host</string>
+    <string name="error_no_permission">Keine Berechtigung</string>
+    <string name="error_network">Netzwerkfehler</string>
+    <string name="error_connection">Verbindungsfehler</string>
+    <string name="error_file_not_found">Datei nicht gefunden</string>
+    <string name="error_timeout">Timeout</string>
+    <string name="error_ssl">Fehlerhaftes SSL Zertifikat</string>
+    <string name="error_http_401">Http - 401 - Unbefugter Zugriff</string>
+    <string name="error_password">Falsches Passwort</string>
+    <string name="error_invalid_otp">Ungültiger Code</string>
+    <string name="error_invalid_user">Nutzer existiert nicht</string>
+    <string name="error_user_exists">Nutzer existiert bereits</string>
+    <string name="error_activity_not_found">Keine App zum öffnen gefunden</string>
+    <string name="error_vereinsflieger_too_many_requests">Verein hat maximale Anzahl an Vereinsflieger Anfragen erreicht</string>
+    <string name="vereinsflieger_wrong_login">Überprüfe Vereinsflieger Anmeldedaten</string>
+    <string name="sort">Sortierung</string>
+    <string name="sort_alphabetically">Alphabetisch</string>
+    <string name="sort_create_asc">Erstelldatum\n(Älteste zuerst)</string>
+    <string name="sort_create_desc">Erstelldatum\n(Neueste zuerst)</string>
+    <string name="sort_user">Eigene Reihenfolge</string>
+    <string name="sort_user_explanation">Nutze Drag and Drop</string>
+    <string name="sort_no_entries">Keine Einträge</string>
+    <string name="sort_no_club">Bitte verknüpfe zuerst einen Verein!</string>
+    <string name="digits_high_low_num">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
+    <string name="digits_low_num">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
+    <string name="digits_num" tools:keep="@string/digits_num">0123456789</string>
+
+
+    <!-- TIMES -->
+    <string name="defaultDateFormatWithYear">d.MM.yyyy</string>
+    <string name="defaultDateFormatWithoutYear">d. MMM</string>
+    <string name="separation_time">:</string>
+    <string name="am" translatable="false">am</string>
+    <string name="pm" translatable="false">pm</string>
+    <string name="date">Datum</string>
+    <string name="time">Zeit</string>
+    <string name="today">Heute</string>
+    <string name="yesterday">Gestern</string>
+    <string name="tomorrow">Morgen</string>
+    <string name="day" tools:keep="@string/day">Tag</string>
+    <plurals name="day" tools:keep="@plurals/day">
+        <item quantity="one">@string/day</item>
+        <item quantity="other">Tage</item>
+    </plurals>
+    <string name="week" tools:keep="@string/week">Woche</string>
+    <plurals name="week" tools:keep="@plurals/week">
+        <item quantity="one">@string/week</item>
+        <item quantity="other">Wochen</item>
+    </plurals>
+    <string name="month" tools:keep="@string/month">Monat</string>
+    <plurals name="month" tools:keep="@plurals/month">
+        <item quantity="one">@string/month</item>
+        <item quantity="other">Monate</item>
+    </plurals>
+    <string name="year" tools:keep="@string/year">Jahr</string>
+    <plurals name="year" tools:keep="@plurals/year">
+        <item quantity="one">@string/year</item>
+        <item quantity="other">Jahre</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">Sekunde</item>
+        <item quantity="other">Sekunden</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">Minute</item>
+        <item quantity="other">Minuten</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">Stunde</item>
+        <item quantity="other">Stunden</item>
+    </plurals>
+    <string name="monday">Mo</string>
+    <string name="tuesday">Di</string>
+    <string name="wednesday">Mi</string>
+    <string name="thursday">Do</string>
+    <string name="friday">Fr</string>
+    <string name="saturday">Sa</string>
+    <string name="sunday">So</string>
+    <string name="error_minDate" tools:keep="@string/error_minDate">Das Datum wurde zum kleinstmöglichen geändert: %s</string>
+    <string name="error_maxDate" tools:keep="@string/error_maxDate">Das Datum wurde zum größtmöglichen geändert: %s</string>
+    <string name="selectDate">Datum auswählen</string>
+
+    <!-- TEXT WATCHER -->
+    <string name="error_missingText">Benötigt</string>
+    <string name="error_wrongValue">Ungültiger Wert</string>
+
+</resources>
