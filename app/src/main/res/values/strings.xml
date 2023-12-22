@@ -8,9 +8,9 @@
     </string>
 
     <!-- GENERAL -->
-    <string name="app_name">Flugplatz App</string>
-    <string name="app_name_split">Flugplatz\nApp</string>
-    <string name="app_name_icon">Flugplatz</string>
+    <string name="app_name">JustFairMobility</string>
+    <string name="app_name_split">JustFair\nMobility</string>
+    <string name="app_name_icon">@string/app_name</string>
     <string name="separation_doubles">,</string>
     <string name="ok">OK</string>
     <string name="yes">Ja</string>
