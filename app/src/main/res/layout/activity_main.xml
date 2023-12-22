@@ -25,8 +25,6 @@
             android:layout_marginStart="24dp"
             android:paddingLeft="0dp"
             android:text="@string/app_name"
-            app:layout_constraintEnd_toStartOf="@+id/swap"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,7 +72,7 @@
                         android:layout_height="4dp" />
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView1"
+                        android:id="@+id/cardView81"
                         style="@style/cardViewNotification"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -109,7 +107,7 @@
                                 android:layout_marginEnd="16dp"
                                 android:paddingStart="2dp"
                                 android:paddingEnd="2dp"
-                                android:text="3 New Comments on your reported problem"
+                                android:text="2 new comments on your reported problem: Defective Elevator Königsplatz"
                                 android:textColor="@color/colorOnSecondary"
                                 android:textSize="16sp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +115,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <Button
-                                android:id="@+id/button_1x"
+                                android:id="@+id/commentNotificationButton"
                                 style="@style/buttonNotification"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -176,7 +174,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <Button
-                                android:id="@+id/button_check_request"
+                                android:id="@+id/surveyNotificationButton"
                                 style="@style/buttonNotification"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -203,7 +201,7 @@
 
                         <!-- 1 -->
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView1"
+                            android:id="@+id/reportProblemCardView"
                             style="@style/cardViewHome"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -306,7 +304,7 @@
                         android:paddingTop="16dp">
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView2"
+                            android:id="@+id/answerSurveyCardView"
                             style="@style/cardViewHome"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -409,7 +407,7 @@
                         android:paddingTop="16dp">
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/cardViewMembersLink"
+                            android:id="@+id/atlasCardView"
                             style="@style/cardViewHome"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -506,7 +504,7 @@
         </androidx.cardview.widget.CardView>
 
         <ImageView
-            android:id="@+id/back"
+            android:id="@+id/settings"
             style="@style/icons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -518,19 +516,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/icon_baseline_settings_24" />
 
-        <ImageView
-            android:id="@+id/swap"
-            style="@style/icons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ripple_pressed_oval_white"
-            android:contentDescription="swap_clubs"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/back"
-            app:layout_constraintEnd_toStartOf="@+id/back"
-            app:layout_constraintTop_toTopOf="@+id/back"
-            app:srcCompat="@drawable/icon_baseline_swap_horizontal_24"
-            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

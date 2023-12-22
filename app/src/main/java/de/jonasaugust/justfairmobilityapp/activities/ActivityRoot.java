@@ -1,4 +1,4 @@
-package de.jonasaugust.flugplatz_app.activities;
+package de.jonasaugust.justfairmobilityapp.activities;
 
 import android.app.Activity;
 import android.content.Context;

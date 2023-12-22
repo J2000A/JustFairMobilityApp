@@ -1,18 +1,33 @@
 package de.jonasaugust.justfairmobilityapp.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Surface;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import de.jonasaugust.justfairmobilityapp.R;
+import de.jonasaugust.justfairmobilityapp.helpers.view_builders.toasts.ToastBuilder;
 
-public class MainActivity extends de.jonasaugust.flugplatz_app.activities.ActivityRoot {
+public class MainActivity extends ActivityRoot {
+
+    View settingsButton;
+    View commentNotificationButton;
+    View surveyNotificationButton;
+    View reportProblemButton;
+    View answerSurveyButton;
+    View atlasButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        settingsButton = findViewById(R.id.settings);
+        commentNotificationButton = findViewById(R.id.commentNotificationButton);
+        surveyNotificationButton = findViewById(R.id.surveyNotificationButton);
+        reportProblemButton = findViewById(R.id.reportProblemCardView);
+        answerSurveyButton = findViewById(R.id.answerSurveyCardView);
+        atlasButton = findViewById(R.id.atlasCardView);
     }
 
     @Override
@@ -22,12 +37,17 @@ public class MainActivity extends de.jonasaugust.flugplatz_app.activities.Activi
 
     @Override
     protected void setListeners() {
-        // TODO
+        settingsButton.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
+        commentNotificationButton.setOnClickListener(view -> /*TODO*/ ToastBuilder.show(this, "TODO", true, true));
+        surveyNotificationButton.setOnClickListener(view -> startActivity(new Intent(this, AnswerSurveyActivity.class)));
+        reportProblemButton.setOnClickListener(view -> startActivity(new Intent(this, ReportProblemActivity.class)));
+        answerSurveyButton.setOnClickListener(view -> startActivity(new Intent(this, AnswerSurveyActivity.class)));
+        atlasButton.setOnClickListener(view -> /*TODO*/ ToastBuilder.show(this, "TODO", true, true));
     }
 
     @Override
     protected View[] getViewsToDisable() {
-        return new View[0];
+        return new View[] {settingsButton, commentNotificationButton, surveyNotificationButton, reportProblemButton, answerSurveyButton, atlasButton};
     }
 
     @Override

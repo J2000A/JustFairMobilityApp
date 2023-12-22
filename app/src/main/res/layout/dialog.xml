@@ -188,7 +188,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/top" />
 
-            <de.jonasaugust.flugplatz_app.helpers.view_builders.dialogs.DialogScrollView
+            <de.jonasaugust.justfairmobilityapp.helpers.view_builders.dialogs.DialogScrollView
                 android:id="@+id/scrollView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -212,7 +212,7 @@
                     android:paddingBottom="@dimen/small">
 
                 </FrameLayout>
-            </de.jonasaugust.flugplatz_app.helpers.view_builders.dialogs.DialogScrollView>
+            </de.jonasaugust.justfairmobilityapp.helpers.view_builders.dialogs.DialogScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </FrameLayout>
