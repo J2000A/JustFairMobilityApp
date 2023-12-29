@@ -1,7 +1,10 @@
 package de.jonasaugust.justfairmobilityapp.activities;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+
+import androidx.annotation.Nullable;
 
 import de.jonasaugust.justfairmobilityapp.R;
 
@@ -10,8 +13,15 @@ public class ReportProblemActivity extends ActivityRoot {
     View back;
 
     @Override
-    protected void updateData(Object object) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         back = findViewById(R.id.back);
+    }
+
+    @Override
+    protected void updateData(Object object) {
+        // nothing
     }
 
     @Override
