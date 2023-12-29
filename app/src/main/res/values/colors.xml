@@ -4,8 +4,8 @@
     <color name="colorPrimaryVariant">#E6E6E6</color>
     <color name="colorOnPrimary">#FFFFFF</color>
 
-    <color name="colorSecondary">#42a5f5</color>
-    <color name="colorSecondaryVariant">#0077c2</color>
+    <color name="colorSecondary">#3399FF</color>
+    <color name="colorSecondaryVariant">#0A4A88</color>
     <color name="colorOnSecondary">#FFFFFF</color>
 
     <color name="colorSurface">#FFFFFF</color>
