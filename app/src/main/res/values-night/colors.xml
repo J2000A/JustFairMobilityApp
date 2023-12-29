@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- TODO Nightmode
     <color name="colorOnSecondary">#DFDFDF</color>
 
     <color name="colorSurface">#2B2E33</color>
@@ -18,4 +19,5 @@
     <color name="colorSeperator">#434343</color>
 
     <color name="dialogButtonsBackground">#1E1E1E</color>
+    -->
 </resources>
