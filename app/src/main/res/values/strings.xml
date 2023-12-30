@@ -10,6 +10,7 @@
     <!-- GENERAL -->
     <string name="app_name">JustFairMobility</string>
     <string name="app_name_split">JustFair\nMobility</string>
+    <string name="atlas_url">http://accessibility-atlas.de/</string>
     <string name="app_name_icon">@string/app_name</string>
     <string name="separation_doubles">,</string>
     <string name="ok">OK</string>

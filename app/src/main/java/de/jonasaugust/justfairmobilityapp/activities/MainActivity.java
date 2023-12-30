@@ -2,6 +2,7 @@ package de.jonasaugust.justfairmobilityapp.activities;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Surface;
 import android.view.View;
@@ -42,7 +43,15 @@ public class MainActivity extends ActivityRoot {
         surveyNotificationButton.setOnClickListener(view -> startActivity(new Intent(this, AnswerSurveyActivity.class)));
         reportProblemButton.setOnClickListener(view -> startActivity(new Intent(this, ReportProblemActivity.class)));
         answerSurveyButton.setOnClickListener(view -> startActivity(new Intent(this, AnswerSurveyActivity.class)));
-        atlasButton.setOnClickListener(view -> /*TODO*/ ToastBuilder.show(this, getString(R.string.inDevelopment), true, true));
+        atlasButton.setOnClickListener(view -> openAtlas());
+    }
+
+    private void openAtlas() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.atlas_url))));
+        } catch (Exception e) {
+            ToastBuilder.show(this, e);
+        }
     }
 
     @Override
