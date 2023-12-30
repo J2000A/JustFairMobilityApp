@@ -3,7 +3,7 @@
     <!-- VersionInfo -->
     <integer name="version_info_counter">0</integer>
     <string name="version_info">
-        Neue Version:
+        New Version:
         \n\n•
     </string>
 
@@ -130,7 +130,7 @@
     <string name="needed">Needed</string>
     <string name="sync">Synchronise</string>
     <string name="sync_start">Synchronization started</string>
-    <string name="sync_success">Synchronization succesfull</string>
+    <string name="sync_success">Synchronization successful</string>
     <string name="search">Search</string>
     <string name="inDevelopment">This feature is in development</string>
     <string name="unknown">Unknown</string>
@@ -179,7 +179,7 @@
     <string name="time">Time</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
-    <string name="tomorrow">Tommorow</string>
+    <string name="tomorrow">Tomorrow</string>
     <string name="day" tools:keep="@string/day">Tag</string>
     <plurals name="day" tools:keep="@plurals/day">
         <item quantity="one">@string/day</item>

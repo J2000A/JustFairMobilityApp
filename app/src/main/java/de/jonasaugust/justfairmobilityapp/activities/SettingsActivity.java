@@ -23,7 +23,7 @@ public class SettingsActivity extends ActivityRoot {
 
     @Override
     protected void updateData(Object object) {
-        title.setText("Settings");
+        title.setText(R.string.settings);
     }
 
     @Override
