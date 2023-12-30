@@ -172,7 +172,8 @@ public class SettingsAdapter {
      * @return 0 = auto; 1 = day; 2 = night
      */
     public static int getNightMode(Context context) {
-        return getSP(context).getInt(NIGHT_MODE, 0);
+        //TODO Change default to 0 when implementing night mode
+        return getSP(context).getInt(NIGHT_MODE, 1);
     }
 
     /**
