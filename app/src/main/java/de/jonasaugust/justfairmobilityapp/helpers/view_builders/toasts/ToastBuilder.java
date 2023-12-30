@@ -122,9 +122,6 @@ public class ToastBuilder {
         if (e instanceof ActivityNotFoundException) {
             return context.getString(R.string.error_activity_not_found);
         }
-        if (e instanceof IOException && e.getMessage() != null && e.getMessage().startsWith("{\"httpstatuscode\":403,\"error\":\"Die maximale Anzahl der Requests am")) {
-            return context.getString(R.string.error_vereinsflieger_too_many_requests);
-        }
 
         if (e.getMessage() != null && e.getMessage().equals(IGNORE_EXCEPTION)) {
             return null;

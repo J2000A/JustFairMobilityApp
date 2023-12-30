@@ -38,11 +38,11 @@ public class MainActivity extends ActivityRoot {
     @Override
     protected void setListeners() {
         settingsButton.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
-        commentNotificationButton.setOnClickListener(view -> /*TODO*/ ToastBuilder.show(this, "TODO", true, true));
+        commentNotificationButton.setOnClickListener(view -> /*TODO*/ ToastBuilder.show(this, getString(R.string.inDevelopment), true, true));
         surveyNotificationButton.setOnClickListener(view -> startActivity(new Intent(this, AnswerSurveyActivity.class)));
         reportProblemButton.setOnClickListener(view -> startActivity(new Intent(this, ReportProblemActivity.class)));
         answerSurveyButton.setOnClickListener(view -> startActivity(new Intent(this, AnswerSurveyActivity.class)));
-        atlasButton.setOnClickListener(view -> /*TODO*/ ToastBuilder.show(this, "TODO", true, true));
+        atlasButton.setOnClickListener(view -> /*TODO*/ ToastBuilder.show(this, getString(R.string.inDevelopment), true, true));
     }
 
     @Override
