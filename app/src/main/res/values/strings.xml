@@ -20,6 +20,80 @@
     <string name="report_problem">Report a Problem</string>
     <string name="report_problem_category">Category</string>
     <string name="report_problem_category_action">Choose Category</string>
+    <!-- Main categories -->
+    <array name="report_problem_category_items">
+        <item>Public Transportation Issues</item>
+        <item>Road Conditions</item>
+        <item>Pedestrian Concerns</item>
+        <item>Bicycle Infrastructure</item>
+        <item>Traffic Management</item>
+        <item>Accessibility Issues</item>
+        <item>Environmental Factors</item>
+        <item>Safety and Security</item>
+        <item>Community Engagement</item>
+        <item>Other/General</item>
+    </array>
+    <!-- Public Transportation Issues subcategories -->
+    <array name="report_problem_category_public_transportation_issues_items">
+        <item>Train delays</item>
+        <item>Bus disruptions</item>
+        <item>Subway/metro problems</item>
+        <item>Tram issues</item>
+        <item>Accessibility (e.g., lack of ramps, elevators)</item>
+    </array>
+    <!-- Road Conditions subcategories -->
+    <array name="report_problem_category_road_conditions_items">
+        <item>Potholes</item>
+        <item>Missing road signs</item>
+        <item>Poor road surface</item>
+        <item>Blocked lanes or roads</item>
+    </array>
+    <!-- Pedestrian Concerns subcategories -->
+    <array name="report_problem_category_pedestrian_concerns_items">
+        <item>Unsafe crossings</item>
+        <item>Insufficient sidewalks</item>
+        <item>Pedestrian safety issues</item>
+    </array>
+    <!-- Bicycle Infrastructure subcategories -->
+    <array name="report_problem_category_bicycle_infrastructure_items">
+        <item>Missing bike lanes</item>
+        <item>Bike lane obstacles</item>
+        <item>Unsafe cycling conditions</item>
+    </array>
+    <!-- Traffic Management subcategories -->
+    <array name="report_problem_category_traffic_management_items">
+        <item>Traffic congestion</item>
+        <item>Signal malfunctions</item>
+        <item>Confusing road markings</item>
+    </array>
+    <!-- Accessibility Issues subcategories -->
+    <array name="report_problem_category_accessibility_issues_items">
+        <item>Lack of disabled access</item>
+        <item>Inadequate facilities for people with disabilities</item>
+        <item>Accessibility challenges for seniors</item>
+    </array>
+    <!-- Environmental Factors subcategories -->
+    <array name="report_problem_category_environmental_factors_items">
+        <item>Pollution concerns (air, noise, etc.)</item>
+        <item>Lack of green spaces</item>
+        <item>Environmental hazards impacting mobility</item>
+    </array>
+    <!-- Safety and Security subcategories -->
+    <array name="report_problem_category_safety_security_items">
+        <item>Crime or safety concerns at transportation hubs</item>
+        <item>Poorly lit areas</item>
+        <item>Vandalism or graffiti affecting mobility</item>
+    </array>
+    <!-- Community Engagement subcategories -->
+    <array name="report_problem_category_community_engagement_items">
+        <item>Suggestions for improvement</item>
+        <item>Commuter feedback and ideas</item>
+        <item>Positive experiences and success stories</item>
+    </array>
+    <!-- Other/General subcategories -->
+    <array name="report_problem_category_other_general_items">
+        <item>Anything not covered in the above categories</item>
+    </array>
     <string name="report_problem_location">Location</string>
     <string name="report_problem_location_map">Choose on Map</string>
     <string name="report_problem_photos">Photos</string>
