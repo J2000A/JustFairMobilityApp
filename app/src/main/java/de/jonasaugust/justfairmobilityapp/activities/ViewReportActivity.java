@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 import de.jonasaugust.justfairmobilityapp.R;
 
-public class AnswerSurveyActivity extends ActivityRoot {
+public class ViewReportActivity extends ActivityRoot {
 
     private TextView title;
     private View back;
@@ -23,7 +23,7 @@ public class AnswerSurveyActivity extends ActivityRoot {
 
     @Override
     protected void updateData(Object object) {
-        title.setText(R.string.answer_surveys);
+        title.setText(R.string.view_report);
     }
 
     @Override

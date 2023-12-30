@@ -37,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingLeft="0dp"
-            android:text="TODO"
+            android:text="@string/inDevelopment"
             app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,9 +84,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="90dp"
-                        android:text="TODO"
-                        android:textAlignment="center"
-                        android:textColor="#292929" />
+                        android:text="@string/inDevelopment"
+                        android:textAlignment="center" />
 
                 </LinearLayout>
             </ScrollView>

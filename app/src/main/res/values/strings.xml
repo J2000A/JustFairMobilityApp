@@ -7,10 +7,25 @@
         \n\n•
     </string>
 
+    <!-- View Report Activity -->
+    <string name="view_report">View Reported Problem</string>
+    <string name="view_report_notification_dummy">2 new comments on your reported problem: Defective Elevator Königsplatz</string>
+
+    <!-- Answer Survey Activity -->
+    <string name="answer_surveys">Answer Surveys</string>
+    <string name="answer_surveys_new_available">New Survey Available</string>
+    <string name="answer_surveys_new_available_action">Answer Now</string>
+
+    <!-- Report A Problem Activity -->
+    <string name="report_problem">Report a Problem</string>
+
+    <!-- Mobility Injustice Atlas -->
+    <string name="atlas">Mobility Injustice Atlas</string>
+    <string name="atlas_url">http://accessibility-atlas.de/</string>
+
     <!-- GENERAL -->
     <string name="app_name">JustFairMobility</string>
     <string name="app_name_split">JustFair\nMobility</string>
-    <string name="atlas_url">http://accessibility-atlas.de/</string>
     <string name="app_name_icon">@string/app_name</string>
     <string name="separation_doubles">,</string>
     <string name="ok">OK</string>
@@ -23,6 +38,7 @@
     <string name="save">Save</string>
     <string name="saved">Saved</string>
     <string name="success">Success</string>
+    <string name="view">View</string>
     <string name="info">Info</string>
     <string name="error">Error</string>
     <string name="invalid">Invalid</string>
@@ -63,6 +79,7 @@
     <string name="sort_user">Own ordering</string>
     <string name="sort_user_explanation">Use drag and drop</string>
     <string name="sort_no_entries">No entries</string>
+    <string name="settings">Settings</string>
     <string name="digits_high_low_num">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="digits_low_num">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="digits_num" tools:keep="@string/digits_num">0123456789</string>
