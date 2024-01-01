@@ -5,7 +5,7 @@ import android.text.Editable;
 import android.widget.EditText;
 
 import de.jonasaugust.justfairmobilityapp.R;
-import de.jonasaugust.justfairmobilityapp.helpers.Umrechner;
+import de.jonasaugust.justfairmobilityapp.helpers.Converter;
 
 public class TextErrorWatcher implements android.text.TextWatcher {
 
@@ -27,7 +27,7 @@ public class TextErrorWatcher implements android.text.TextWatcher {
     public void afterTextChanged(Editable editable) {
         if (needed && editable.toString().isEmpty()) {
             editText.setError(missing);
-        } else if (isDouble && Umrechner.stringToDouble(editable.toString()) == null && (needed || !editable.toString().isEmpty())) {
+        } else if (isDouble && Converter.stringToDouble(editable.toString()) == null && (needed || !editable.toString().isEmpty())) {
             editText.setError(doubleString);
         } else {
             editText.setError(null);
@@ -54,7 +54,7 @@ public class TextErrorWatcher implements android.text.TextWatcher {
     }
 
     public static boolean isDoubleError(EditText editText, Context context){
-        if (Umrechner.stringToDouble(editText.getText().toString()) == null) {
+        if (Converter.stringToDouble(editText.getText().toString()) == null) {
             setError(editText, R.string.error_missingText, context);
             return true;
         }

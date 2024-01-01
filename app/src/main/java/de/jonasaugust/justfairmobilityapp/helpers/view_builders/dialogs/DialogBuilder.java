@@ -37,8 +37,8 @@ import java.util.Calendar;
 
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.data.SettingsAdapter;
-import de.jonasaugust.justfairmobilityapp.helpers.Umrechner;
-import de.jonasaugust.justfairmobilityapp.helpers.Zeit;
+import de.jonasaugust.justfairmobilityapp.helpers.Converter;
+import de.jonasaugust.justfairmobilityapp.helpers.Time;
 import de.jonasaugust.justfairmobilityapp.helpers.compatability.DateCompat;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.buttons.ButtonDesigner;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.toasts.ToastBuilder;
@@ -105,7 +105,7 @@ public class DialogBuilder {
             dialog.getWindow().setLayout((int) (context.getResources().getDisplayMetrics().widthPixels * 0.99), (int) (context.getResources().getDisplayMetrics().heightPixels * 0.99));
         } else {
             dialog.setContentView(R.layout.dialog);
-            dialog.getWindow().setLayout((int) Math.min(Umrechner.dpToPx(350), context.getResources().getDisplayMetrics().widthPixels * 0.85), context.getResources().getDisplayMetrics().heightPixels);
+            dialog.getWindow().setLayout((int) Math.min(Converter.dpToPx(350), context.getResources().getDisplayMetrics().widthPixels * 0.85), context.getResources().getDisplayMetrics().heightPixels);
         }
 
         if (!big) {
@@ -301,11 +301,11 @@ public class DialogBuilder {
         if (context.getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
             grenzeOhneTitel = 410;
             grenzeMitTitel = 475;
-            dialog.getWindow().setLayout((int) Math.min(Umrechner.dpToPx(500),context.getResources().getDisplayMetrics().widthPixels*0.85),WRAP_CONTENT);
+            dialog.getWindow().setLayout((int) Math.min(Converter.dpToPx(500),context.getResources().getDisplayMetrics().widthPixels*0.85),WRAP_CONTENT);
         }
 
-        if ((Umrechner.pxToDp(context.getResources().getDisplayMetrics().heightPixels)<grenzeMitTitel&&!title.getText().toString().isEmpty())
-                || (Umrechner.pxToDp(context.getResources().getDisplayMetrics().heightPixels)<grenzeOhneTitel&&title.getText().toString().isEmpty())){
+        if ((Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels)<grenzeMitTitel&&!title.getText().toString().isEmpty())
+                || (Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels)<grenzeOhneTitel&&title.getText().toString().isEmpty())){
             setContent(datePicker);
         }else {
             ((FrameLayout)dialog.findViewById(R.id.picker)).addView(datePicker);
@@ -319,7 +319,7 @@ public class DialogBuilder {
         show();
     }
 
-    public void showZeitPickerDialog(Zeit zeit, final DialogBuilderDateSetter dateSetter){
+    public void showZeitPickerDialog(Time time, final DialogBuilderDateSetter dateSetter){
 
         TextView title = dialog.findViewById(R.id.ueberschrift);
         if (title.getText().toString().isEmpty())
@@ -334,8 +334,8 @@ public class DialogBuilder {
 
         TimePicker timePicker = new TimePicker(context);
         timePicker.setIs24HourView(!new SettingsAdapter(context).isAmPmFormat());
-        timePicker.setMinute(zeit.getMinute());
-        timePicker.setHour(zeit.getStunde());
+        timePicker.setMinute(time.getMinute());
+        timePicker.setHour(time.getStunde());
         timePicker.setOnTimeChangedListener((timePicker1, hourOfDay, minute) -> {
             selected.setHours(hourOfDay);
             selected.setMinutes(minute);
@@ -351,11 +351,11 @@ public class DialogBuilder {
         if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             grenzeOhneTitel = 429;
             grenzeMitTitel = 504;
-            dialog.getWindow().setLayout((int) Math.min(Umrechner.dpToPx(500), context.getResources().getDisplayMetrics().widthPixels * 0.85), WRAP_CONTENT);
+            dialog.getWindow().setLayout((int) Math.min(Converter.dpToPx(500), context.getResources().getDisplayMetrics().widthPixels * 0.85), WRAP_CONTENT);
         }
 
-        if ((Umrechner.pxToDp(context.getResources().getDisplayMetrics().heightPixels) < grenzeMitTitel && !title.getText().toString().isEmpty())
-                || (Umrechner.pxToDp(context.getResources().getDisplayMetrics().heightPixels) < grenzeOhneTitel && title.getText().toString().isEmpty())) {
+        if ((Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels) < grenzeMitTitel && !title.getText().toString().isEmpty())
+                || (Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels) < grenzeOhneTitel && title.getText().toString().isEmpty())) {
             setContent(timePicker);
         } else {
             ((FrameLayout) dialog.findViewById(R.id.picker)).addView(timePicker);
@@ -377,7 +377,7 @@ public class DialogBuilder {
                 ScrollView scrollView = dialog.findViewById(R.id.scrollView);
 
                 buttons.setBackgroundResource(R.color.colorSurface);
-                buttons.setPadding(buttons.getPaddingLeft(), Umrechner.dpToPx(4), buttons.getPaddingRight(), buttons.getPaddingBottom());
+                buttons.setPadding(buttons.getPaddingLeft(), Converter.dpToPx(4), buttons.getPaddingRight(), buttons.getPaddingBottom());
                 int scrollViewPadding = content.getPaddingBottom();
                 content.setPadding(content.getPaddingLeft(), content.getPaddingTop(), content.getPaddingRight(), 0);
                 scrollView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {

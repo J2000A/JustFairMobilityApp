@@ -20,7 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.toasts.ToastBuilder;
 
-public class ActivityMaps extends ActivityRoot implements OnMapReadyCallback {
+public class MapsActivity extends ActivityRoot implements OnMapReadyCallback {
 
     // TODO: Create API Key and add it to the project:
     // 1)

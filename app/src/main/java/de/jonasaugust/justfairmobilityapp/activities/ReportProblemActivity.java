@@ -21,7 +21,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.data.ProblemReport;
-import de.jonasaugust.justfairmobilityapp.helpers.Umrechner;
+import de.jonasaugust.justfairmobilityapp.helpers.Converter;
 
 public class ReportProblemActivity extends ActivityRoot {
 
@@ -63,9 +63,9 @@ public class ReportProblemActivity extends ActivityRoot {
         for (String photoPath : problemReport.getPhotos()) {
             ImageView imageView = new ImageView(this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, Umrechner.dpToPx(80)
+                    LinearLayout.LayoutParams.MATCH_PARENT, Converter.dpToPx(80)
             );
-            layoutParams.setMargins(0, Umrechner.dpToPx(8), 0, 0);
+            layoutParams.setMargins(0, Converter.dpToPx(8), 0, 0);
             imageView.setLayoutParams(layoutParams);
             Bitmap bitmap = BitmapFactory.decodeFile(photoPath);
             if (bitmap != null) {
@@ -107,11 +107,11 @@ public class ReportProblemActivity extends ActivityRoot {
     }
 
     private void selectLocationWithMaps() {
-        Intent intent = new Intent(this, ActivityMaps.class);
+        Intent intent = new Intent(this, MapsActivity.class);
         if (problemReport.getLocation() != null) {
-            intent.putExtra(ActivityMaps.LAT, Double.valueOf(problemReport.getLocation().latitude));
-            intent.putExtra(ActivityMaps.LON, Double.valueOf(problemReport.getLocation().longitude));
-            intent.putExtra(ActivityMaps.ZOOM, 14);
+            intent.putExtra(MapsActivity.LAT, Double.valueOf(problemReport.getLocation().latitude));
+            intent.putExtra(MapsActivity.LON, Double.valueOf(problemReport.getLocation().longitude));
+            intent.putExtra(MapsActivity.ZOOM, 14);
         }
         resultLauncher.launch(intent);
     }
@@ -122,8 +122,8 @@ public class ReportProblemActivity extends ActivityRoot {
                 Intent data = result.getData();
                 if (result.getResultCode() == Activity.RESULT_OK && data != null) {
                     problemReport.setLocation(
-                            new LatLng(data.getDoubleExtra(ActivityMaps.LAT, -1),
-                                    data.getDoubleExtra(ActivityMaps.LON, -1))
+                            new LatLng(data.getDoubleExtra(MapsActivity.LAT, -1),
+                                    data.getDoubleExtra(MapsActivity.LON, -1))
                     );
                 }
                 updateData(null);

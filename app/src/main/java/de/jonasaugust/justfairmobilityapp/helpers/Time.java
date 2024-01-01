@@ -11,12 +11,8 @@ import java.util.TimeZone;
 
 import de.jonasaugust.justfairmobilityapp.helpers.compatability.DateCompat;
 
-/*
-This class was created by Jonas august outside working hours
-*/
-
 @SuppressWarnings("unused")
-public class Zeit {
+public class Time {
 
     public static final String TRENNER = ":";
 
@@ -35,35 +31,35 @@ public class Zeit {
     public static final int ANZAHL_WOCHEN_PRO_MONAT = 4;
     public static final int ANZAHL_MONATE_PRO_JAHR = 12;
 
-    public Zeit(){
+    public Time(){
         DateCompat date = new DateCompat();
         this.minute = date.getMinutes();
         this.stunde = date.getHours();
     }
 
-    public Zeit(int stunde, int minute) {
+    public Time(int stunde, int minute) {
         this.minute = minute;
         this.stunde = stunde;
     }
 
-    public Zeit(DateCompat date) {
+    public Time(DateCompat date) {
         this.minute = date.getMinutes();
         this.stunde = date.getHours();
     }
 
-    public Zeit(Zeit zeit) {
-        this.minute = zeit.getMinute();
-        this.stunde = zeit.getStunde();
+    public Time(Time time) {
+        this.minute = time.getMinute();
+        this.stunde = time.getStunde();
     }
 
-    public Zeit(Long timestamp) {
+    public Time(Long timestamp) {
         this(new DateCompat(timestamp));
     }
 
     /**
      * @param s Format 00:00 oder 0000
      */
-    public Zeit(String s) {
+    public Time(String s) {
         if (s.contains(TRENNER)) {
             String[] strings = s.split(TRENNER);
             stunde = Integer.parseInt(strings[0]);
@@ -97,19 +93,19 @@ public class Zeit {
         return date;
     }
 
-    public boolean kleinerGleich(Zeit zeit){
+    public boolean kleinerGleich(Time time){
         DateCompat date1 = attachToDate(new DateCompat());
-        DateCompat date2 = zeit.attachToDate(new DateCompat());
-        return date1.before(date2) || istGleich(zeit);
+        DateCompat date2 = time.attachToDate(new DateCompat());
+        return date1.before(date2) || istGleich(time);
     }
 
-    public boolean istGleich(Zeit zeit){
-        return getMinute() == zeit.getMinute() && getStunde() == zeit.getStunde();
+    public boolean istGleich(Time time){
+        return getMinute() == time.getMinute() && getStunde() == time.getStunde();
     }
 
-    public void setZeit(Zeit zeit){
-        minute = zeit.getMinute();
-        stunde = zeit.getStunde();
+    public void setZeit(Time time){
+        minute = time.getMinute();
+        stunde = time.getStunde();
     }
 
     public void setZeit(int stunde,int minute){
@@ -125,8 +121,8 @@ public class Zeit {
     @Override
     public boolean equals(Object obj) {
         try {
-            Zeit zeit = (Zeit) obj;
-            return zeit.getStunde() == getStunde() && zeit.getMinute() == getMinute();
+            Time time = (Time) obj;
+            return time.getStunde() == getStunde() && time.getMinute() == getMinute();
         }catch (Exception e){
             return super.equals(obj);
         }
@@ -145,13 +141,13 @@ public class Zeit {
         return (leadingZeroHour && stunde <= 9 ? "0" : "") + stunde + TRENNER + (minute <= 9 ? "0" : "") + minute;
     }
 
-    public int minutenDelta(Zeit zeit) {
-        if (istGleich(zeit)) {
+    public int minutenDelta(Time time) {
+        if (istGleich(time)) {
             return 0;
-        } else if (kleinerGleich(zeit)) {
-            return 60 - minute + zeit.minute + (zeit.stunde - stunde - 1) * 60;
+        } else if (kleinerGleich(time)) {
+            return 60 - minute + time.minute + (time.stunde - stunde - 1) * 60;
         } else {
-            return zeit.minutenDelta(this);
+            return time.minutenDelta(this);
         }
     }
 
