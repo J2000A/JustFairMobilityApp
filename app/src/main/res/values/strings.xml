@@ -30,7 +30,7 @@
         <item>Accessibility Issues</item>
         <item>Environmental Factors</item>
         <item>Safety and Security</item>
-        <item>Community Engagement</item>
+        <item>Feedback</item>
         <item>Other/General</item>
     </array>
     <!-- Public Transportation Issues subcategories -->
@@ -84,11 +84,11 @@
         <item>Poorly lit areas</item>
         <item>Vandalism or graffiti affecting mobility</item>
     </array>
-    <!-- Community Engagement subcategories -->
+    <!-- Feedback subcategories -->
     <array name="report_problem_category_community_engagement_items">
         <item>Suggestions for improvement</item>
         <item>Commuter feedback and ideas</item>
-        <item>Positive experiences and success stories</item>
+        <item>Positive experiences</item>
     </array>
     <!-- Other/General subcategories -->
     <array name="report_problem_category_other_general_items">
