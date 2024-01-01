@@ -1,5 +1,7 @@
 package de.jonasaugust.justfairmobilityapp.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,13 +11,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 
-import com.google.android.material.button.MaterialButton;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.net.URL;
 
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.data.ProblemReport;
@@ -78,6 +80,10 @@ public class ReportProblemActivity extends ActivityRoot {
     @Override
     protected void setListeners() {
         back.setOnClickListener(view -> onBackPressed());
+        category.setOnClickListener(view -> {/*TODO*/});
+        location.setOnClickListener(view -> selectLocationWithMaps());
+        photos.setOnClickListener(view -> {/*TODO*/});
+        send.setOnClickListener(view -> {/*TODO*/});
     }
 
     @Override
@@ -99,4 +105,28 @@ public class ReportProblemActivity extends ActivityRoot {
     protected int getContentView() {
         return R.layout.activity_report_problem;
     }
+
+    private void selectLocationWithMaps() {
+        Intent intent = new Intent(this, ActivityMaps.class);
+        if (problemReport.getLocation() != null) {
+            intent.putExtra(ActivityMaps.LAT, Double.valueOf(problemReport.getLocation().latitude));
+            intent.putExtra(ActivityMaps.LON, Double.valueOf(problemReport.getLocation().longitude));
+            intent.putExtra(ActivityMaps.ZOOM, 14);
+        }
+        resultLauncher.launch(intent);
+    }
+
+    private final ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                Intent data = result.getData();
+                if (result.getResultCode() == Activity.RESULT_OK && data != null) {
+                    problemReport.setLocation(
+                            new LatLng(data.getDoubleExtra(ActivityMaps.LAT, -1),
+                                    data.getDoubleExtra(ActivityMaps.LON, -1))
+                    );
+                }
+                updateData(null);
+            }
+    );
 }
