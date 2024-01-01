@@ -133,6 +133,7 @@
                         android:text="@string/report_problem_photos_add"/>
 
                     <LinearLayout
+                        android:id="@+id/photosContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/large"
@@ -144,13 +145,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="80dp"
                             android:layout_marginTop="@dimen/small"
-                            app:srcCompat="@android:mipmap/sym_def_app_icon" />
+                            android:visibility="gone"
+                            app:srcCompat="@android:mipmap/sym_def_app_icon"
+                            tools:visibility="visible" />
 
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="80dp"
                             android:layout_marginTop="@dimen/small"
-                            app:srcCompat="@android:mipmap/sym_def_app_icon" />
+                            android:visibility="gone"
+                            app:srcCompat="@android:mipmap/sym_def_app_icon"
+                            tools:visibility="visible" />
 
                     </LinearLayout>
 
@@ -184,7 +189,7 @@
                     <androidx.cardview.widget.CardView style="@style/separator" />
 
                     <Button
-                        android:id="@+id/save"
+                        android:id="@+id/send"
                         style="@style/buttonMainAction"
                         android:layout_width="match_parent"
                         android:layout_marginLeft="@dimen/large"
