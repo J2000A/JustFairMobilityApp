@@ -8,7 +8,6 @@
 
     <!-- Layout Param height changed programmatically to match_parent for big dialog-->
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
         style="@style/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,12 +36,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/ueberschrift"
+                    android:id="@+id/title"
                     style="@style/textHead"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:paddingLeft="0dp"
+                    android:paddingStart="0dp"
                     android:paddingTop="?dialogPreferredPadding"
                     android:paddingEnd="?dialogPreferredPadding"
                     android:paddingBottom="?dialogPreferredPadding"
@@ -52,7 +51,7 @@
                     app:layout_constraintStart_toEndOf="@+id/icon"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlSymmetry"
-                    tools:text="Titel" />
+                    tools:text="Title" />
 
                 <ImageView
                     android:id="@+id/close"
@@ -64,9 +63,9 @@
                     android:background="@drawable/ripple_pressed_oval_colored"
                     android:contentDescription="@string/cancel"
                     android:padding="@dimen/small"
-                    app:layout_constraintBottom_toBottomOf="@+id/ueberschrift"
+                    app:layout_constraintBottom_toBottomOf="@+id/title"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/ueberschrift"
+                    app:layout_constraintTop_toTopOf="@+id/title"
                     app:srcCompat="@drawable/icon_baseline_close_24"
                     app:tint="@color/colorOnSurface" />
 
@@ -76,9 +75,9 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="2dp"
                     android:paddingEnd="@dimen/small"
-                    app:layout_constraintBottom_toBottomOf="@+id/ueberschrift"
+                    app:layout_constraintBottom_toBottomOf="@+id/title"
                     app:layout_constraintStart_toEndOf="@+id/space"
-                    app:layout_constraintTop_toTopOf="@+id/ueberschrift"
+                    app:layout_constraintTop_toTopOf="@+id/title"
                     app:srcCompat="@drawable/icon_outline_info_24"
                     app:tint="@color/colorOnSurface"
                     tools:ignore="ContentDescription,RtlSymmetry" />

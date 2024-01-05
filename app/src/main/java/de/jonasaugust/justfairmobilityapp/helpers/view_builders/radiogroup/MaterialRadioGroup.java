@@ -79,22 +79,22 @@ public class MaterialRadioGroup {
         this.selected = selectedButton;
     }
 
-    public void setSelectedButtonAndNotify(int stelle){
-        setSelectedButton(stelle);
-        if (listener!=null)listener.onChange(stelle);
-        if (listenersChildren != null) listenersChildren[stelle].onClick(buttons[stelle]);
+    public void setSelectedButtonAndNotify(int position){
+        setSelectedButton(position);
+        if (listener!=null)listener.onChange(position);
+        if (listenersChildren != null) listenersChildren[position].onClick(buttons[position]);
     }
 
-    public void setSelectedButton(int stelle){
-        if (onSurface)ButtonDesigner.designButtonSelectedOnSurface(buttons[stelle],invert,context);
-        else ButtonDesigner.designButtonSelectedOnPrimary(buttons[stelle],context);
-        if (getSelected()!=stelle){
+    public void setSelectedButton(int position){
+        if (onSurface)ButtonDesigner.designButtonSelectedOnSurface(buttons[position],invert,context);
+        else ButtonDesigner.designButtonSelectedOnPrimary(buttons[position],context);
+        if (getSelected()!=position){
             try {
                 if (onSurface)ButtonDesigner.designButtonUnselectedOnSurface(buttons[getSelected()],invert,context);
                 else ButtonDesigner.designButtonUnselectedOnPrimary(buttons[getSelected()],context);
             }catch (Exception ignored){}
         }
-        setSelected(stelle);
+        setSelected(position);
     }
 
     private void setSelected(int i){

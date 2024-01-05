@@ -4,7 +4,6 @@ package de.jonasaugust.justfairmobilityapp.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Surface;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -32,7 +31,7 @@ public class MainActivity extends ActivityRoot {
     }
 
     @Override
-    protected void updateData(Object object) {
+    protected void updateData() {
         // nothing
     }
 

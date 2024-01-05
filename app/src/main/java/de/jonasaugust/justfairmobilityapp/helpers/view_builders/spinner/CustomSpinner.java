@@ -25,6 +25,7 @@ public class CustomSpinner extends androidx.appcompat.widget.AppCompatSpinner {
         try {
             if (sameSelected) {
                 // Spinner does not call the OnItemSelectedListener if the same item is selected, so do it manually now
+                //noinspection DataFlowIssue
                 getOnItemSelectedListener().onItemSelected(this, getSelectedView(), position, getSelectedItemId());
             }
         }catch (NullPointerException ignore){}
@@ -37,6 +38,7 @@ public class CustomSpinner extends androidx.appcompat.widget.AppCompatSpinner {
         super.setSelection(position);
         if (sameSelected) {
             // Spinner does not call the OnItemSelectedListener if the same item is selected, so do it manually now
+            //noinspection DataFlowIssue
             getOnItemSelectedListener().onItemSelected(this, getSelectedView(), position, getSelectedItemId());
         }
     }

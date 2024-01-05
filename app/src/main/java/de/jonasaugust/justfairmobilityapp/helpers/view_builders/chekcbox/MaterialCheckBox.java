@@ -122,7 +122,7 @@ public class MaterialCheckBox {
     }
 
     public boolean isChildrenChecked() {
-        if (children==null||children.length==0)return false;
+        if (children == null)return false;
         for (MaterialCheckBox m:children) {
             if (m.isChecked())return true;
         }

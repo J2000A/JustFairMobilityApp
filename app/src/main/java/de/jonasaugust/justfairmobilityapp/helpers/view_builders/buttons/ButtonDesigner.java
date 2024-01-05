@@ -86,7 +86,7 @@ public class ButtonDesigner {
         button.setIconTintResource(R.color.colorOnPrimary);
     }
 
-    public static void designSpeichernButton(MaterialButton button, boolean readyToSave, Context context) {
+    public static void designSaveButton(MaterialButton button, boolean readyToSave, Context context) {
             if (readyToSave) {
                 ViewCompat.setBackgroundTintList(button, ContextCompat.getColorStateList(context, R.color.colorSecondary));
                 button.setTextColor(ContextCompat.getColor(context, R.color.colorOnSecondary));

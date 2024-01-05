@@ -18,27 +18,24 @@ public class ProblemReport {
         return category;
     }
 
-    public ProblemReport setCategory(String category) {
+    public void setCategory(String category) {
         this.category = category;
-        return this;
     }
 
     public LatLng getLocation() {
         return location;
     }
 
-    public ProblemReport setLocation(LatLng location) {
+    public void setLocation(LatLng location) {
         this.location = location;
-        return this;
     }
 
     public List<Bitmap> getPhotos() {
         return photos;
     }
 
-    public ProblemReport addPhoto(Bitmap photo) {
+    public void addPhoto(Bitmap photo) {
         photos.add(photo);
-        return this;
     }
 
     public String getDescription() {

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -48,14 +49,14 @@ public class DialogBuilder {
 
     private final Context context;
     private final Dialog dialog;
-    private final MaterialButton buttonRed;
-    private final MaterialButton buttonLong;
-    private final MaterialButton buttonShort;
+    private final Button buttonRed;
+    private final Button buttonLong;
+    private final Button buttonShort;
     private final ProgressBar progressBar;
     private final View buttonShortSpace;
     private Runnable onDismissListener;
 
-    private boolean dismissable = true;
+    private boolean dismissible = true;
     private boolean confirmBack = false;
 
     public DialogBuilder(int titleId, int iconId, final Context context) {
@@ -91,7 +92,7 @@ public class DialogBuilder {
 
             @Override
             public void dismiss() {
-                if (!dismissable) return;
+                if (!dismissible) return;
                 if (onDismissListener != null) onDismissListener.run();
                 super.dismiss();
             }
@@ -99,6 +100,7 @@ public class DialogBuilder {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         dialog.setCancelable(cancelable);
+        //noinspection DataFlowIssue
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         if (big) {
             dialog.setContentView(R.layout.dialog_big);
@@ -142,7 +144,7 @@ public class DialogBuilder {
                 view1 = new View(context);
             }
             imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-            dismissable = true;
+            dismissible = true;
             this.dismiss(false);
         });
 
@@ -163,7 +165,7 @@ public class DialogBuilder {
 
     @SuppressWarnings("SameParameterValue")
     private void dismiss(boolean forced) {
-        if (forced) dismissable = true;
+        if (forced) dismissible = true;
         if (confirmBack && !forced) {
             showBackConfirmationDialog(context, view -> dialog.dismiss());
             return;
@@ -184,7 +186,7 @@ public class DialogBuilder {
     }
 
     public DialogBuilder setTitle(String s) {
-        TextView textView = dialog.findViewById(R.id.ueberschrift);
+        TextView textView = dialog.findViewById(R.id.title);
         textView.setText(s);
         return this;
     }
@@ -212,7 +214,7 @@ public class DialogBuilder {
         buttonShort.setOnClickListener(view -> {
             if (listener!=null)listener.onClick(buttonShort);
             if (dismiss) {
-                dismissable = true;
+                dismissible = true;
                 this.dismiss();
             }
         });
@@ -229,7 +231,7 @@ public class DialogBuilder {
         buttonLong.setOnClickListener(view -> {
             if (listener!=null)listener.onClick(buttonLong);
             if (dismiss) {
-                dismissable = true;
+                dismissible = true;
                 this.dismiss();
             }
         });
@@ -246,7 +248,7 @@ public class DialogBuilder {
         buttonRed.setOnClickListener(view -> {
             if (listener!=null)listener.onClick(buttonRed);
             if (dismiss) {
-                dismissable = true;
+                dismissible = true;
                 this.dismiss();
             }
         });
@@ -257,6 +259,7 @@ public class DialogBuilder {
     public DialogBuilder setContent(View view) {
         FrameLayout linearLayout = dialog.findViewById(R.id.content);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        //noinspection DataFlowIssue
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WRAP_CONTENT;
@@ -269,7 +272,7 @@ public class DialogBuilder {
     }
 
     public void showDatePickerDialog(DateCompat datum, final DateCompat minDate, final DateCompat maxDate, final DialogBuilderDateSetter dateSetter){
-        TextView title = dialog.findViewById(R.id.ueberschrift);
+        TextView title = dialog.findViewById(R.id.title);
         if (title.getText().toString().isEmpty())
             dialog.findViewById(R.id.top).setVisibility(View.GONE);
         else{
@@ -295,17 +298,18 @@ public class DialogBuilder {
         setButtonShort(context.getString(R.string.cancel),true,null);
         View buttons = dialog.findViewById(R.id.buttons);
 
-        int grenzeOhneTitel = 630;
-        int grenzeMitTitel = 693;
+        int limitWithoutTitle = 630;
+        int limitWithTitle = 693;
 
         if (context.getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-            grenzeOhneTitel = 410;
-            grenzeMitTitel = 475;
+            limitWithoutTitle = 410;
+            limitWithTitle = 475;
+            //noinspection DataFlowIssue
             dialog.getWindow().setLayout((int) Math.min(Converter.dpToPx(500),context.getResources().getDisplayMetrics().widthPixels*0.85),WRAP_CONTENT);
         }
 
-        if ((Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels)<grenzeMitTitel&&!title.getText().toString().isEmpty())
-                || (Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels)<grenzeOhneTitel&&title.getText().toString().isEmpty())){
+        if ((Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels)<limitWithTitle&&!title.getText().toString().isEmpty())
+                || (Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels)<limitWithoutTitle&&title.getText().toString().isEmpty())){
             setContent(datePicker);
         }else {
             ((FrameLayout)dialog.findViewById(R.id.picker)).addView(datePicker);
@@ -321,7 +325,7 @@ public class DialogBuilder {
 
     public void showZeitPickerDialog(Time time, final DialogBuilderDateSetter dateSetter){
 
-        TextView title = dialog.findViewById(R.id.ueberschrift);
+        TextView title = dialog.findViewById(R.id.title);
         if (title.getText().toString().isEmpty())
             dialog.findViewById(R.id.top).setVisibility(View.GONE);
         else {
@@ -335,7 +339,7 @@ public class DialogBuilder {
         TimePicker timePicker = new TimePicker(context);
         timePicker.setIs24HourView(!new SettingsAdapter(context).isAmPmFormat());
         timePicker.setMinute(time.getMinute());
-        timePicker.setHour(time.getStunde());
+        timePicker.setHour(time.getHour());
         timePicker.setOnTimeChangedListener((timePicker1, hourOfDay, minute) -> {
             selected.setHours(hourOfDay);
             selected.setMinutes(minute);
@@ -345,17 +349,18 @@ public class DialogBuilder {
 
         setButtonShort(context.getString(R.string.cancel), true, null);
 
-        int grenzeOhneTitel = 570;
-        int grenzeMitTitel = 630;
+        int limitWithoutTitle = 570;
+        int limitWithTitle = 630;
 
         if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            grenzeOhneTitel = 429;
-            grenzeMitTitel = 504;
+            limitWithoutTitle = 429;
+            limitWithTitle = 504;
+            //noinspection DataFlowIssue
             dialog.getWindow().setLayout((int) Math.min(Converter.dpToPx(500), context.getResources().getDisplayMetrics().widthPixels * 0.85), WRAP_CONTENT);
         }
 
-        if ((Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels) < grenzeMitTitel && !title.getText().toString().isEmpty())
-                || (Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels) < grenzeOhneTitel && title.getText().toString().isEmpty())) {
+        if ((Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels) < limitWithTitle && !title.getText().toString().isEmpty())
+                || (Converter.pxToDp(context.getResources().getDisplayMetrics().heightPixels) < limitWithoutTitle && title.getText().toString().isEmpty())) {
             setContent(timePicker);
         } else {
             ((FrameLayout) dialog.findViewById(R.id.picker)).addView(timePicker);
@@ -522,9 +527,9 @@ public class DialogBuilder {
         new DialogBuilder(R.string.error, -1, context).addText(ToastBuilder.getErrorString(context, e)).show();
     }
 
-    public DialogBuilder setUndismissable(boolean undismissable) {
-        dismissable = !undismissable;
-        if (undismissable) {
+    public DialogBuilder setUnDismissible(boolean unDismissible) {
+        dismissible = !unDismissible;
+        if (unDismissible) {
             dialog.findViewById(R.id.close).setVisibility(View.INVISIBLE);
         } else {
             dialog.findViewById(R.id.close).setVisibility(View.VISIBLE);

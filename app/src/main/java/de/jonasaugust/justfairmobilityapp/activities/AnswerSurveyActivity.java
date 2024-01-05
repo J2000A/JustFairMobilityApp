@@ -22,7 +22,7 @@ public class AnswerSurveyActivity extends ActivityRoot {
     }
 
     @Override
-    protected void updateData(Object object) {
+    protected void updateData() {
         title.setText(R.string.answer_surveys);
     }
 

@@ -35,21 +35,22 @@ import de.jonasaugust.justfairmobilityapp.helpers.view_builders.toasts.ToastBuil
 public class ReportProblemActivity extends ActivityRoot {
 
     // Views
-    View back;
-    MaterialButton category;
-    MaterialButton location;
-    Button photos;
-    LinearLayout photosContainer;
-    TextInputLayout descriptionLayout;
-    TextInputEditText description;
-    Button send;
+    private View back;
+    private MaterialButton category;
+    private MaterialButton location;
+    private Button photos;
+    private LinearLayout photosContainer;
+    private TextInputLayout descriptionLayout;
+    private TextInputEditText description;
+    private Button send;
 
     // Request Codes
     private final int REQUEST_IMAGE_CAPTURE = 7557;
 
     // State
-    ProblemReport problemReport = new ProblemReport();
+    private final ProblemReport problemReport = new ProblemReport();
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +67,7 @@ public class ReportProblemActivity extends ActivityRoot {
 
     @SuppressLint("SetTextI18n")
     @Override
-    protected void updateData(Object object) {
+    protected void updateData() {
         if (problemReport.getCategory() != null) {
             ButtonDesigner.designButtonSelectedOnSurface(category, false, false, this);
             category.setText(problemReport.getCategory());
@@ -148,10 +149,11 @@ public class ReportProblemActivity extends ActivityRoot {
                                     data.getDoubleExtra(MapsActivity.LON, -1))
                     );
                 }
-                updateData(null);
+                updateData();
             }
     );
 
+    /** @noinspection deprecation*/
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
@@ -169,7 +171,7 @@ public class ReportProblemActivity extends ActivityRoot {
             assert extras != null;
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             problemReport.addPhoto(imageBitmap);
-            updateData(null);
+            updateData();
         } else if (requestCode == REQUEST_IMAGE_CAPTURE) {
             ToastBuilder.show(this, R.string.report_problem_photos_error);
         }
@@ -181,7 +183,7 @@ public class ReportProblemActivity extends ActivityRoot {
                 .setButtonShort(R.string.cancel, true, null)
                 .setButtonRed(R.string.delete, true, view -> {
                     problemReport.removePhoto(index);
-                    updateData(null);
+                    updateData();
                 })
                 .show();
     }
@@ -206,13 +208,13 @@ public class ReportProblemActivity extends ActivityRoot {
         @SuppressLint("DiscouragedApi")
         int resourceId = getResources().getIdentifier(resourceName, "array", getPackageName());
         DialogBuilder builder = new DialogBuilder(parentCategory, -1, true, this);
-        View[] views = (View[]) Arrays.stream(getResources().getStringArray(resourceId))
+        View[] views = Arrays.stream(getResources().getStringArray(resourceId))
                 .sequential()
                 .map(s -> DialogBuilder.generateButton(s, iconId, this, view -> {
                     problemReport.setCategory(parentCategory + " ► " + s);
                     builder.dismiss();
                     parentBuilder.dismiss();
-                    updateData(null);
+                    updateData();
                 })).toArray(View[]::new);
         builder
                 .setConfirmBack(false)

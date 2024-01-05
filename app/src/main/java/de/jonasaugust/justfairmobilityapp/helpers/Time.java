@@ -14,42 +14,42 @@ import de.jonasaugust.justfairmobilityapp.helpers.compatability.DateCompat;
 @SuppressWarnings("unused")
 public class Time {
 
-    public static final String TRENNER = ":";
+    public static final String SEPARATOR = ":";
 
     public static final long ONE_HOUR_IN_MILLIS = 60 * 60 * 1000L;
-    public static final int STUNDEN_AM_TAG = 24;
+    public static final int HOURS_OF_DAY = 24;
 
     private int minute;
-    private int stunde;
+    private int hour;
 
-    public static final int DAUER_TAG = 1;
-    public static final int DAUER_WOCHE = 7;
-    public static final int DAUER_MONAT = 30;
-    public static final int DAUER_DREI_MONATE = 3 * DAUER_MONAT;
-    public static final int DAUER_JAHR = 365;
+    public static final int DURATION_DAY = 1;
+    public static final int DURATION_WEEK = 7;
+    public static final int DURATION_MONTH = 30;
+    public static final int DURATION_THREE_MONTHS = 3 * DURATION_MONTH;
+    public static final int DURATION_YEAR = 365;
 
-    public static final int ANZAHL_WOCHEN_PRO_MONAT = 4;
-    public static final int ANZAHL_MONATE_PRO_JAHR = 12;
+    public static final int WEEKS_PER_MONTH = 4;
+    public static final int MONTHS_PER_YEAR = 12;
 
     public Time(){
         DateCompat date = new DateCompat();
         this.minute = date.getMinutes();
-        this.stunde = date.getHours();
+        this.hour = date.getHours();
     }
 
-    public Time(int stunde, int minute) {
+    public Time(int hour, int minute) {
         this.minute = minute;
-        this.stunde = stunde;
+        this.hour = hour;
     }
 
     public Time(DateCompat date) {
         this.minute = date.getMinutes();
-        this.stunde = date.getHours();
+        this.hour = date.getHours();
     }
 
     public Time(Time time) {
         this.minute = time.getMinute();
-        this.stunde = time.getStunde();
+        this.hour = time.getHour();
     }
 
     public Time(Long timestamp) {
@@ -60,12 +60,12 @@ public class Time {
      * @param s Format 00:00 oder 0000
      */
     public Time(String s) {
-        if (s.contains(TRENNER)) {
-            String[] strings = s.split(TRENNER);
-            stunde = Integer.parseInt(strings[0]);
+        if (s.contains(SEPARATOR)) {
+            String[] strings = s.split(SEPARATOR);
+            hour = Integer.parseInt(strings[0]);
             minute = Integer.parseInt(strings[1]);
         } else {
-            stunde = Integer.parseInt(s.substring(0, 2));
+            hour = Integer.parseInt(s.substring(0, 2));
             minute = Integer.parseInt(s.substring(2));
         }
     }
@@ -78,58 +78,58 @@ public class Time {
         this.minute = minute;
     }
 
-    public int getStunde() {
-        return stunde;
+    public int getHour() {
+        return hour;
     }
 
-    public void setStunde(int stunde) {
-        this.stunde = stunde;
+    public void setHour(int hour) {
+        this.hour = hour;
     }
 
     public DateCompat attachToDate(DateCompat date){
         date.setMinutes(minute);
-        date.setHours(stunde);
+        date.setHours(hour);
         date.setSeconds(0);
         return date;
     }
 
-    public boolean kleinerGleich(Time time){
+    public boolean lessEqual(Time time){
         DateCompat date1 = attachToDate(new DateCompat());
         DateCompat date2 = time.attachToDate(new DateCompat());
-        return date1.before(date2) || istGleich(time);
+        return date1.before(date2) || isEqual(time);
     }
 
-    public boolean istGleich(Time time){
-        return getMinute() == time.getMinute() && getStunde() == time.getStunde();
+    public boolean isEqual(Time time){
+        return getMinute() == time.getMinute() && getHour() == time.getHour();
     }
 
     public void setZeit(Time time){
         minute = time.getMinute();
-        stunde = time.getStunde();
+        hour = time.getHour();
     }
 
-    public void setZeit(int stunde,int minute){
+    public void setZeit(int hour,int minute){
         this.minute = minute;
-        this.stunde = stunde;
+        this.hour = hour;
     }
 
     public void setZeit(DateCompat date){
         minute = date.getMinutes();
-        stunde = date.getHours();
+        hour = date.getHours();
     }
 
     @Override
     public boolean equals(Object obj) {
         try {
             Time time = (Time) obj;
-            return time.getStunde() == getStunde() && time.getMinute() == getMinute();
+            return time.getHour() == getHour() && time.getMinute() == getMinute();
         }catch (Exception e){
             return super.equals(obj);
         }
     }
 
     public double zuDouble() {
-        return getStunde() + (((double)getMinute())/60d);
+        return getHour() + (((double)getMinute())/60d);
     }
 
     @NonNull
@@ -138,16 +138,16 @@ public class Time {
     }
 
     public String toString(boolean leadingZeroHour) {
-        return (leadingZeroHour && stunde <= 9 ? "0" : "") + stunde + TRENNER + (minute <= 9 ? "0" : "") + minute;
+        return (leadingZeroHour && hour <= 9 ? "0" : "") + hour + SEPARATOR + (minute <= 9 ? "0" : "") + minute;
     }
 
-    public int minutenDelta(Time time) {
-        if (istGleich(time)) {
+    public int minutesDelta(Time time) {
+        if (isEqual(time)) {
             return 0;
-        } else if (kleinerGleich(time)) {
-            return 60 - minute + time.minute + (time.stunde - stunde - 1) * 60;
+        } else if (lessEqual(time)) {
+            return 60 - minute + time.minute + (time.hour - hour - 1) * 60;
         } else {
-            return time.minutenDelta(this);
+            return time.minutesDelta(this);
         }
     }
 

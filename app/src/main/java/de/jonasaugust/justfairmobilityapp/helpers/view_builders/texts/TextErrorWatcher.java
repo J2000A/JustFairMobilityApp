@@ -4,24 +4,16 @@ import android.content.Context;
 import android.text.Editable;
 import android.widget.EditText;
 
-import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.helpers.Converter;
 
+/** @noinspection UnusedReturnValue*/
 public class TextErrorWatcher implements android.text.TextWatcher {
 
-    private final EditText editText;
-    private final boolean isDouble;
-    private final String missing;
-    private final String doubleString;
-    private final boolean needed;
-
-    public TextErrorWatcher(boolean needed, boolean isDouble, EditText editText, Context context) {
-        this.isDouble = isDouble;
-        this.editText = editText;
-        this.needed = needed;
-        missing = context.getString(R.string.error_missingText);
-        doubleString = context.getString(R.string.error_wrongValue);
-    }
+    private EditText editText;
+    private boolean isDouble;
+    private String missing;
+    private String doubleString;
+    private boolean needed;
 
     @Override
     public void afterTextChanged(Editable editable) {
@@ -44,31 +36,6 @@ public class TextErrorWatcher implements android.text.TextWatcher {
         //nothing
     }
 
-    public static boolean isNeededError(EditText editText, Context context){
-        if (editText.getText() == null) editText.setText("");
-        if (editText.getText().toString().trim().isEmpty()) {
-            setError(editText, R.string.error_missingText, context);
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean isDoubleError(EditText editText, Context context){
-        if (Converter.stringToDouble(editText.getText().toString()) == null) {
-            setError(editText, R.string.error_missingText, context);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * @return false
-     */
-    @SuppressWarnings("SameReturnValue")
-    public static boolean setError(EditText editText, int msgResource, Context context){
-        return setError(editText, context.getString(msgResource), context);
-    }
-
     /**
      * @return false
      */
@@ -86,8 +53,4 @@ public class TextErrorWatcher implements android.text.TextWatcher {
         return false;
     }
 
-    public static void attach(boolean needed, boolean isDouble, EditText editText, Context context) {
-        TextErrorWatcher textErrorWatcher = new TextErrorWatcher(needed, isDouble, editText, context);
-        editText.addTextChangedListener(textErrorWatcher);
-    }
 }

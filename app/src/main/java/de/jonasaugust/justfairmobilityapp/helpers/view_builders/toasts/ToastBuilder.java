@@ -26,6 +26,7 @@ public class ToastBuilder {
     private static Toast create(Context context, int StringID, boolean shortDuration, boolean error){
         if (error && Build.VERSION.SDK_INT < Build.VERSION_CODES.R){
             Toast toast = Toast.makeText(context,StringID,shortDuration?Toast.LENGTH_SHORT:Toast.LENGTH_LONG);
+            //noinspection DataFlowIssue
             toast.getView().getBackground().setColorFilter(ContextCompat.getColor(context, R.color.colorError), PorterDuff.Mode.SRC_IN);
             ((TextView)toast.getView().findViewById(android.R.id.message)).setTextColor(ContextCompat.getColor(context, R.color.colorOnError));
             return toast;
@@ -37,21 +38,13 @@ public class ToastBuilder {
     private static Toast create(Context context, String string, boolean shortDuration, boolean error){
         if (error && Build.VERSION.SDK_INT < Build.VERSION_CODES.R){
             Toast toast = Toast.makeText(context,string,shortDuration?Toast.LENGTH_SHORT:Toast.LENGTH_LONG);
+            //noinspection DataFlowIssue
             toast.getView().getBackground().setColorFilter(ContextCompat.getColor(context, R.color.colorError), PorterDuff.Mode.SRC_IN);
             ((TextView)toast.getView().findViewById(android.R.id.message)).setTextColor(ContextCompat.getColor(context, R.color.colorOnError));
             return toast;
         } else try {
             return Toast.makeText(context,string,shortDuration?Toast.LENGTH_SHORT:Toast.LENGTH_LONG);
         } catch (NullPointerException ignore) {return null;}
-    }
-
-    public static void show(Context context, int StringID, boolean shortDuration, Exception exception){
-        if (exception == null) {
-            Toast toast = create(context, StringID, shortDuration, false);
-            if (toast != null) toast.show();
-        } else {
-            show(context, exception);
-        }
     }
 
     public static void show(Context context, int StringID, boolean shortDuration, boolean error){

@@ -22,7 +22,7 @@ public class ViewReportActivity extends ActivityRoot {
     }
 
     @Override
-    protected void updateData(Object object) {
+    protected void updateData() {
         title.setText(R.string.view_report);
     }
 

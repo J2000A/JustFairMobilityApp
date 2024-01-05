@@ -2,7 +2,6 @@ package de.jonasaugust.justfairmobilityapp.activities;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -36,7 +35,7 @@ public abstract class ActivityRoot extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         setListeners();
-        updateData(null);
+        updateData();
     }
 
     protected void hideKeyboard() {
@@ -48,6 +47,7 @@ public abstract class ActivityRoot extends AppCompatActivity {
         super.attachBaseContext(SettingsAdapter.setSprache(SettingsAdapter.getSprache(base),false, base));
     }
 
+    /** @noinspection deprecation*/
     @Override
     public void onBackPressed() {
         if (confirmBack()) {
@@ -92,7 +92,7 @@ public abstract class ActivityRoot extends AppCompatActivity {
         });
     }
 
-    protected abstract void updateData(Object object);
+    protected abstract void updateData();
 
     protected abstract void setListeners();
 

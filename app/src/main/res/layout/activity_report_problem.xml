@@ -2,7 +2,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
@@ -13,7 +12,6 @@
     android:textAlignment="textStart">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -36,7 +34,8 @@
             style="@style/textHead"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
             android:text="@string/report_problem"
             app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +146,8 @@
                             android:layout_marginTop="@dimen/small"
                             android:visibility="gone"
                             app:srcCompat="@android:mipmap/sym_def_app_icon"
-                            tools:visibility="visible" />
+                            tools:visibility="visible"
+                            tools:ignore="ContentDescription" />
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -155,7 +155,8 @@
                             android:layout_marginTop="@dimen/small"
                             android:visibility="gone"
                             app:srcCompat="@android:mipmap/sym_def_app_icon"
-                            tools:visibility="visible" />
+                            tools:visibility="visible"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
 

@@ -1,12 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- VersionInfo -->
-    <integer name="version_info_counter">0</integer>
-    <string name="version_info">
-        New Version:
-        \n\n•
-    </string>
-
     <!-- View Report Activity -->
     <string name="view_report">View Reported Problem</string>
     <string name="view_report_notification_dummy">2 new comments on your reported problem: Defective Elevator Königsplatz</string>
@@ -108,8 +101,8 @@
     </array>
 
     <!-- Maps Activity -->
-    <string name="maps_title">Position auswählen</string>
-    <string name="maps_action">Auswählen</string>
+    <string name="maps_title">Select Location</string>
+    <string name="maps_action">Select</string>
     <string name="maps_info">Lat: %1$s\nLon: %2$s\nZoom: %3$s</string>
     <string name="maps_no_location_permission">Location permission denied. Cannot show current location.</string>
 
@@ -119,77 +112,31 @@
 
     <!-- GENERAL -->
     <string name="app_name">JustFairMobility</string>
-    <string name="app_name_split">JustFair\nMobility</string>
-    <string name="app_name_icon">@string/app_name</string>
-    <string name="separation_doubles">,</string>
     <string name="ok">OK</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
     <string name="cancel">Cancel</string>
-    <string name="canceled">Canceled</string>
     <string name="delete">Delete</string>
-    <string name="deleted">Deleted</string>
     <string name="save">Save</string>
-    <string name="saved">Saved</string>
-    <string name="success">Success</string>
     <string name="view">View</string>
-    <string name="info">Info</string>
     <string name="error">Error</string>
-    <string name="invalid">Invalid</string>
-    <string name="hint">Hint</string>
-    <string name="needed">Needed</string>
-    <string name="sync">Synchronise</string>
-    <string name="sync_start">Synchronization started</string>
-    <string name="sync_success">Synchronization successful</string>
-    <string name="search">Search</string>
     <string name="inDevelopment">This feature is in development</string>
-    <string name="unknown">Unknown</string>
     <string name="back">Back</string>
-    <string name="edit">Edit</string>
-    <string name="add">Add</string>
     <string name="back_confirmation">Back?</string>
     <string name="back_confirmation_text">All changes will be lost!</string>
     <string name="back_confirmation_action">Back</string>
-    <string name="error_unknown">Unknown Error</string>
-    <string name="error_google_sign_in_unavailable">Google Sign In not available</string>
-    <string name="error_no_internet">No internet connection</string>
     <string name="error_unknown_host">No internet connection or unknown host</string>
-    <string name="error_no_permission">No permission</string>
-    <string name="error_network">Network error</string>
     <string name="error_connection">Connection error</string>
     <string name="error_file_not_found">File not found</string>
     <string name="error_timeout">Timeout</string>
     <string name="error_ssl">Wrong SSL Certificate</string>
     <string name="error_http_401">Http - 401 - no access</string>
-    <string name="error_password">Wrong Password</string>
-    <string name="error_invalid_otp">Invalid Code</string>
-    <string name="error_invalid_user">User not existing</string>
-    <string name="error_user_exists">User already exists</string>
     <string name="error_activity_not_found">Found no app to open</string>
-    <string name="sort">Sorting</string>
-    <string name="sort_alphabetically">Alphabetically</string>
-    <string name="sort_create_asc">Date of creation\n(Oldest first)</string>
-    <string name="sort_create_desc">Date of creation\n(Newest first)</string>
-    <string name="sort_user">Own ordering</string>
-    <string name="sort_user_explanation">Use drag and drop</string>
-    <string name="sort_no_entries">No entries</string>
     <string name="settings">Settings</string>
-    <string name="digits_high_low_num">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
-    <string name="digits_low_num">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="digits_num" tools:keep="@string/digits_num">0123456789</string>
 
 
     <!-- TIMES -->
     <string name="defaultDateFormatWithYear">d.MM.yyyy</string>
     <string name="defaultDateFormatWithoutYear">d. MMM</string>
-    <string name="separation_time">:</string>
-    <string name="am" translatable="false">am</string>
-    <string name="pm" translatable="false">pm</string>
-    <string name="date">Date</string>
-    <string name="time">Time</string>
-    <string name="today">Today</string>
-    <string name="yesterday">Yesterday</string>
-    <string name="tomorrow">Tomorrow</string>
     <string name="day" tools:keep="@string/day">Tag</string>
     <plurals name="day" tools:keep="@plurals/day">
         <item quantity="one">@string/day</item>
@@ -210,25 +157,6 @@
         <item quantity="one">@string/year</item>
         <item quantity="other">Years</item>
     </plurals>
-    <plurals name="seconds">
-        <item quantity="one">Second</item>
-        <item quantity="other">Seconds</item>
-    </plurals>
-    <plurals name="minutes">
-        <item quantity="one">Minute</item>
-        <item quantity="other">Minutes</item>
-    </plurals>
-    <plurals name="hours">
-        <item quantity="one">Hour</item>
-        <item quantity="other">Hours</item>
-    </plurals>
-    <string name="monday">Mo</string>
-    <string name="tuesday">Tu</string>
-    <string name="wednesday">We</string>
-    <string name="thursday">Th</string>
-    <string name="friday">Fr</string>
-    <string name="saturday">Sa</string>
-    <string name="sunday">Su</string>
     <string name="error_minDate" tools:keep="@string/error_minDate">The date was changed to the smallest possible: %s</string>
     <string name="error_maxDate" tools:keep="@string/error_maxDate">The date was changed to the largest possible: %s</string>
     <string name="selectDate">Choose date</string>

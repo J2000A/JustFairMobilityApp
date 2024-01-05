@@ -6,7 +6,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -85,11 +84,4 @@ public class App extends Application {
         super.onConfigurationChanged(newConfig);
     }
 
-    @SuppressLint("MissingPermission")
-    public static boolean noInternetConnection(Context context) {
-        ConnectivityManager con_manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return !(con_manager.getActiveNetworkInfo() != null
-                && con_manager.getActiveNetworkInfo().isAvailable()
-                && con_manager.getActiveNetworkInfo().isConnected());
-    }
 }

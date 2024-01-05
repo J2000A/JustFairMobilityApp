@@ -92,12 +92,13 @@ public class MapsActivity extends ActivityRoot implements OnMapReadyCallback {
     }
 
     @Override
-    protected void updateData(Object object) {
+    protected void updateData() {
         if (mapReady) {
             latLng = map.getCameraPosition().target;
             zoom = (int) map.getCameraPosition().zoom;
         }
         if (latLng != null) {
+            //noinspection ConcatenationWithEmptyString
             info.setText(getString(R.string.maps_info, latLng.latitude + "", latLng.longitude + "", zoom + ""));
         } else {
             info.setText(getString(R.string.maps_info, "?", "?", "?"));
@@ -119,7 +120,7 @@ public class MapsActivity extends ActivityRoot implements OnMapReadyCallback {
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
         }
 
-        map.setOnCameraMoveListener(() -> runOnUiThread(() -> updateData(null)));
+        map.setOnCameraMoveListener(() -> runOnUiThread(() -> updateData()));
 
         // Check and request location permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -133,7 +134,7 @@ public class MapsActivity extends ActivityRoot implements OnMapReadyCallback {
 
         mapReady = true;
         map = googleMap;
-        updateData(null);
+        updateData();
     }
 
     @SuppressLint("MissingPermission")

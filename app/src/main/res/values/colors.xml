@@ -16,20 +16,17 @@
     <color name="colorOnError">#FFFFFF</color>
 
     <color name="colorHomeAction">#7BB8EA</color>
-    <color name="colorHomeActionDisabled">#3E3E3E</color>
     <color name="colorHomeActivityIcon">@color/colorOnSecondary</color>
-    <color name="colorHomeActivityIconDisabled">#FFFFFF</color>
     <color name="colorHomeActivityText">@color/colorOnSurface</color>
     <color name="colorHomeActionAccent">#F2FFFFFF</color>
 
-    <color name="colorSeperator">@color/colorPrimaryVariant</color>
+    <color name="colorSeparator">@color/colorPrimaryVariant</color>
 
     <color name="colorButtonOnSurface">#EAEAEA</color>
 
     <color name="dialogButtonsBackground">@color/lightGrey</color>
 
     <color name="black" tools:keep="@color/black">#FF000000</color>
-    <color name="darkGrey">#323232</color>
     <color name="midGrey">#7C7C7C</color>
     <color name="lightGrey">#ECECEC</color>
     <color name="white" tools:keep="@color/white">#FFFFFF</color>
