@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -18,14 +17,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
@@ -34,13 +31,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.Calendar;
-
 import de.jonasaugust.justfairmobilityapp.R;
-import de.jonasaugust.justfairmobilityapp.data.SettingsAdapter;
 import de.jonasaugust.justfairmobilityapp.helpers.Converter;
-import de.jonasaugust.justfairmobilityapp.helpers.Time;
-import de.jonasaugust.justfairmobilityapp.helpers.compatability.DateCompat;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.buttons.ButtonDesigner;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.toasts.ToastBuilder;
 

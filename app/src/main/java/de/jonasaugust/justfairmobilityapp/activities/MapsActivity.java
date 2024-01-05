@@ -120,7 +120,7 @@ public class MapsActivity extends ActivityRoot implements OnMapReadyCallback {
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
         }
 
-        map.setOnCameraMoveListener(() -> runOnUiThread(() -> updateData()));
+        map.setOnCameraMoveListener(() -> runOnUiThread(this::updateData));
 
         // Check and request location permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
