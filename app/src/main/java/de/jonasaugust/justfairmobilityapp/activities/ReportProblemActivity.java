@@ -1,5 +1,6 @@
 package de.jonasaugust.justfairmobilityapp.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,6 +19,8 @@ import androidx.annotation.Nullable;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.text.DecimalFormat;
 
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.data.ProblemReport;
@@ -52,13 +55,16 @@ public class ReportProblemActivity extends ActivityRoot {
         send = findViewById(R.id.send);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void updateData(Object object) {
         if (problemReport.getCategory() != null)
             category.setText(problemReport.getCategory());
 
-        if (problemReport.getLocation() != null)
-            location.setText(problemReport.getLocation().toString());
+        if (problemReport.getLocation() != null) {
+            DecimalFormat df = new DecimalFormat("#.####");
+            location.setText("Lat: " + df.format(problemReport.getLocation().latitude) + "  Lon: " + df.format(problemReport.getLocation().longitude));
+        }
 
         for (String photoPath : problemReport.getPhotos()) {
             ImageView imageView = new ImageView(this);
