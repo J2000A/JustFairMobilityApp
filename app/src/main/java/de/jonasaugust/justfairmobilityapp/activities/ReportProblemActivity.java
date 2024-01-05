@@ -2,10 +2,13 @@ package de.jonasaugust.justfairmobilityapp.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +28,8 @@ import java.text.DecimalFormat;
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.data.ProblemReport;
 import de.jonasaugust.justfairmobilityapp.helpers.Converter;
+import de.jonasaugust.justfairmobilityapp.helpers.view_builders.dialogs.DialogBuilder;
+import de.jonasaugust.justfairmobilityapp.helpers.view_builders.toasts.ToastBuilder;
 
 public class ReportProblemActivity extends ActivityRoot {
 
@@ -37,6 +42,9 @@ public class ReportProblemActivity extends ActivityRoot {
     TextInputLayout descriptionLayout;
     TextInputEditText description;
     Button send;
+
+    // Request Codes
+    private final int REQUEST_IMAGE_CAPTURE = 7557;
 
     // State
     ProblemReport problemReport = new ProblemReport();
@@ -66,18 +74,22 @@ public class ReportProblemActivity extends ActivityRoot {
             location.setText("Lat: " + df.format(problemReport.getLocation().latitude) + "  Lon: " + df.format(problemReport.getLocation().longitude));
         }
 
-        for (String photoPath : problemReport.getPhotos()) {
+        photosContainer.removeAllViews();
+        int index = 0;
+        for (Bitmap bitmap : problemReport.getPhotos()) {
             ImageView imageView = new ImageView(this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, Converter.dpToPx(80)
+                    LinearLayout.LayoutParams.MATCH_PARENT, Converter.dpToPx(150)
             );
             layoutParams.setMargins(0, Converter.dpToPx(8), 0, 0);
             imageView.setLayoutParams(layoutParams);
-            Bitmap bitmap = BitmapFactory.decodeFile(photoPath);
             if (bitmap != null) {
                 imageView.setImageBitmap(bitmap);
                 photosContainer.addView(imageView);
+                int finalIndex = index;
+                imageView.setOnClickListener(view -> deleteImageDialog(finalIndex));
             }
+            index++;
         }
 
         description.setText(problemReport.getDescription());
@@ -88,7 +100,7 @@ public class ReportProblemActivity extends ActivityRoot {
         back.setOnClickListener(view -> onBackPressed());
         category.setOnClickListener(view -> {/*TODO*/});
         location.setOnClickListener(view -> selectLocationWithMaps());
-        photos.setOnClickListener(view -> {/*TODO*/});
+        photos.setOnClickListener(view -> dispatchTakePictureIntent());
         send.setOnClickListener(view -> {/*TODO*/});
     }
 
@@ -135,4 +147,38 @@ public class ReportProblemActivity extends ActivityRoot {
                 updateData(null);
             }
     );
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        } catch (ActivityNotFoundException e) {
+            ToastBuilder.show(this, R.string.report_problem_photos_no_camera);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            assert extras != null;
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            problemReport.addPhoto(imageBitmap);
+            updateData(null);
+        } else {
+            ToastBuilder.show(this, R.string.report_problem_photos_error);
+        }
+    }
+
+    private void deleteImageDialog(int index) {
+        new DialogBuilder(R.string.delete, R.drawable.icon_baseline_delete_forever_24, this)
+                .addText(R.string.report_problem_photos_delete)
+                .setButtonShort(R.string.cancel, true, null)
+                .setButtonRed(R.string.delete, true, view -> {
+                    problemReport.removePhoto(index);
+                    updateData(null);
+                })
+                .show();
+    }
 }

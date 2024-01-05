@@ -98,6 +98,9 @@
     <string name="report_problem_location_map">Choose on Map</string>
     <string name="report_problem_photos">Photos</string>
     <string name="report_problem_photos_add">Add Photo</string>
+    <string name="report_problem_photos_no_camera">No Camera Application was found</string>
+    <string name="report_problem_photos_error">Error while taking and storing photo</string>
+    <string name="report_problem_photos_delete">Delete this picture?</string>
     <string name="report_problem_description">Description</string>
     <string name="report_problem_description_hint">Problem Description (optional)</string>
     <string name="report_problem_action">Send Report</string>

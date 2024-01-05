@@ -1,5 +1,7 @@
 package de.jonasaugust.justfairmobilityapp.data;
 
+import android.graphics.Bitmap;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ public class ProblemReport {
 
     private String category = null;
     private LatLng location = null;
-    private List<String> photos = new ArrayList<>();
+    private final List<Bitmap> photos = new ArrayList<>();
     private String description = "";
 
     public String getCategory() {
@@ -30,11 +32,11 @@ public class ProblemReport {
         return this;
     }
 
-    public List<String> getPhotos() {
+    public List<Bitmap> getPhotos() {
         return photos;
     }
 
-    public ProblemReport addPhoto(String photo) {
+    public ProblemReport addPhoto(Bitmap photo) {
         photos.add(photo);
         return this;
     }
@@ -48,5 +50,9 @@ public class ProblemReport {
             description = "";
         this.description = description;
         return this;
+    }
+
+    public void removePhoto(int index) {
+        photos.remove(index);
     }
 }
