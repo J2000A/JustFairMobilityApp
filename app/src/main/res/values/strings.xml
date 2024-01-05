@@ -107,6 +107,7 @@
     <string name="maps_title">Position auswählen</string>
     <string name="maps_action">Auswählen</string>
     <string name="maps_info">Lat: %1$s\nLon: %2$s\nZoom: %3$s</string>
+    <string name="maps_no_location_permission">Location permission denied. Cannot show current location.</string>
 
     <!-- Mobility Injustice Atlas -->
     <string name="atlas">Mobility Injustice Atlas</string>
