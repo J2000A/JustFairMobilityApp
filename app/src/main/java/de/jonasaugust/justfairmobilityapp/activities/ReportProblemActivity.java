@@ -28,6 +28,7 @@ import java.util.Arrays;
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.data.ProblemReport;
 import de.jonasaugust.justfairmobilityapp.helpers.Converter;
+import de.jonasaugust.justfairmobilityapp.helpers.view_builders.buttons.ButtonDesigner;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.dialogs.DialogBuilder;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.toasts.ToastBuilder;
 
@@ -35,8 +36,8 @@ public class ReportProblemActivity extends ActivityRoot {
 
     // Views
     View back;
-    Button category;
-    Button location;
+    MaterialButton category;
+    MaterialButton location;
     Button photos;
     LinearLayout photosContainer;
     TextInputLayout descriptionLayout;
@@ -66,10 +67,13 @@ public class ReportProblemActivity extends ActivityRoot {
     @SuppressLint("SetTextI18n")
     @Override
     protected void updateData(Object object) {
-        if (problemReport.getCategory() != null)
+        if (problemReport.getCategory() != null) {
+            ButtonDesigner.designButtonSelectedOnSurface(category, false, false, this);
             category.setText(problemReport.getCategory());
+        }
 
         if (problemReport.getLocation() != null) {
+            ButtonDesigner.designButtonSelectedOnSurface(location, false, false, this);
             DecimalFormat df = new DecimalFormat("#.####");
             location.setText("Lat: " + df.format(problemReport.getLocation().latitude) + "  Lon: " + df.format(problemReport.getLocation().longitude));
         }
@@ -101,7 +105,7 @@ public class ReportProblemActivity extends ActivityRoot {
         category.setOnClickListener(view -> chooseCategory());
         location.setOnClickListener(view -> selectLocationWithMaps());
         photos.setOnClickListener(view -> dispatchTakePictureIntent());
-        send.setOnClickListener(view -> {/*TODO*/});
+        send.setOnClickListener(view -> sendReport());
     }
 
     @Override
@@ -214,5 +218,28 @@ public class ReportProblemActivity extends ActivityRoot {
                 .setConfirmBack(false)
                 .addViewList(views)
                 .show();
+    }
+
+    private void sendReport() {
+        boolean missing = false;
+
+        if (problemReport.getCategory() == null) {
+            ButtonDesigner.designErrorButton(category, this);
+            missing = true;
+        }
+
+        if (problemReport.getLocation() == null) {
+            ButtonDesigner.designErrorButton(location, this);
+            missing = true;
+        }
+
+        if (missing) {
+            ToastBuilder.show(this, R.string.report_problem_missing);
+            return;
+        }
+
+        // TODO Store Report on Server
+        ToastBuilder.show(this, R.string.report_problem_success);
+        finish();
     }
 }
