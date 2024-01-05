@@ -31,7 +31,7 @@
         <item>Environmental Factors</item>
         <item>Safety and Security</item>
         <item>Feedback</item>
-        <item>Other/General</item>
+        <item>Other or General</item>
     </array>
     <!-- Public Transportation Issues subcategories -->
     <array name="report_problem_category_public_transportation_issues_items">
@@ -79,20 +79,20 @@
         <item>Environmental hazards impacting mobility</item>
     </array>
     <!-- Safety and Security subcategories -->
-    <array name="report_problem_category_safety_security_items">
+    <array name="report_problem_category_safety_and_security_items">
         <item>Crime or safety concerns at transportation hubs</item>
         <item>Poorly lit areas</item>
         <item>Vandalism or graffiti affecting mobility</item>
     </array>
     <!-- Feedback subcategories -->
-    <array name="report_problem_category_community_engagement_items">
+    <array name="report_problem_category_feedback_items">
         <item>Suggestions for improvement</item>
         <item>Commuter feedback and ideas</item>
         <item>Positive experiences</item>
     </array>
     <!-- Other/General subcategories -->
-    <array name="report_problem_category_other_general_items">
-        <item>Anything not covered in the above categories</item>
+    <array name="report_problem_category_other_or_general_items">
+        <item>Anything not covered in the other categories</item>
     </array>
     <string name="report_problem_location">Location</string>
     <string name="report_problem_location_map">Choose on Map</string>

@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -20,10 +18,12 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.data.ProblemReport;
@@ -98,7 +98,7 @@ public class ReportProblemActivity extends ActivityRoot {
     @Override
     protected void setListeners() {
         back.setOnClickListener(view -> onBackPressed());
-        category.setOnClickListener(view -> {/*TODO*/});
+        category.setOnClickListener(view -> chooseCategory());
         location.setOnClickListener(view -> selectLocationWithMaps());
         photos.setOnClickListener(view -> dispatchTakePictureIntent());
         send.setOnClickListener(view -> {/*TODO*/});
@@ -179,6 +179,40 @@ public class ReportProblemActivity extends ActivityRoot {
                     problemReport.removePhoto(index);
                     updateData(null);
                 })
+                .show();
+    }
+
+    private void chooseCategory() {
+        DialogBuilder builder = new DialogBuilder(R.string.report_problem_category_action, -1, true, this);
+        View[] views = Arrays.stream(getResources().getStringArray(R.array.report_problem_category_items))
+                .sequential()
+                .map(s -> {
+                    @SuppressLint("DiscouragedApi")
+                    int iconId = getResources().getIdentifier("category_" + s.replace(" ", "_").toLowerCase(), "drawable", getPackageName());
+                    return DialogBuilder.generateButton(s, iconId, this, view -> chooseSubCategory(s, iconId, builder));
+                }).toArray(View[]::new);
+        builder
+                .setConfirmBack(false)
+                .addViewList(views)
+                .show();
+    }
+
+    private void chooseSubCategory(String parentCategory, int iconId, DialogBuilder parentBuilder) {
+        String resourceName = "report_problem_category_" + parentCategory.replace(" ", "_").toLowerCase() + "_items";
+        @SuppressLint("DiscouragedApi")
+        int resourceId = getResources().getIdentifier(resourceName, "array", getPackageName());
+        DialogBuilder builder = new DialogBuilder(parentCategory, -1, true, this);
+        View[] views = (View[]) Arrays.stream(getResources().getStringArray(resourceId))
+                .sequential()
+                .map(s -> DialogBuilder.generateButton(s, iconId, this, view -> {
+                    problemReport.setCategory(parentCategory + " ► " + s);
+                    builder.dismiss();
+                    parentBuilder.dismiss();
+                    updateData(null);
+                })).toArray(View[]::new);
+        builder
+                .setConfirmBack(false)
+                .addViewList(views)
                 .show();
     }
 }

@@ -536,8 +536,9 @@ public class DialogBuilder {
         return confirmBack;
     }
 
-    public void setConfirmBack(boolean confirmBack) {
+    public DialogBuilder setConfirmBack(boolean confirmBack) {
         this.confirmBack = confirmBack;
+        return this;
     }
 
     public void disableScroll() {
