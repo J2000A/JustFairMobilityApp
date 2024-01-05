@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import de.jonasaugust.justfairmobilityapp.R;
 
+// TODO Implement
 public class ViewReportActivity extends ActivityRoot {
 
     private TextView title;
