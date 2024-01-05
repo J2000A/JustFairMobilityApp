@@ -170,7 +170,7 @@ public class ReportProblemActivity extends ActivityRoot {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             problemReport.addPhoto(imageBitmap);
             updateData(null);
-        } else {
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE) {
             ToastBuilder.show(this, R.string.report_problem_photos_error);
         }
     }
