@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -47,4 +48,9 @@ dependencies {
 
     // Gson
     implementation("com.google.code.gson:gson:2.9.0")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-storage")
+    implementation("com.google.firebase:firebase-firestore")
 }

@@ -108,7 +108,7 @@
 
     <!-- Mobility Injustice Atlas -->
     <string name="atlas">Mobility Injustice Atlas</string>
-    <string name="atlas_url">http://accessibility-atlas.de/</string>
+    <string name="atlas_url">http://jonasaugust.de/JustFairMobility</string>
 
     <!-- GENERAL -->
     <string name="app_name">JustFairMobility</string>

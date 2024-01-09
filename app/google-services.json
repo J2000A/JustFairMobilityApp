@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "128877775241",
+    "project_id": "justfairmobility",
+    "storage_bucket": "justfairmobility.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128877775241:android:781af22a65db4e7b1ef958",
+        "android_client_info": {
+          "package_name": "de.jonasaugust.justfairmobilityapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpHEmWxEgFcHJpFOdVzyFJRIt6EqH5FT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
