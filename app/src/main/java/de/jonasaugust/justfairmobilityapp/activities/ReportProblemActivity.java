@@ -18,16 +18,34 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.core.FirestoreClient;
+import com.google.firebase.firestore.remote.FirestoreChannel;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firestore.v1.WriteResult;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.data.ProblemReport;
 import de.jonasaugust.justfairmobilityapp.helpers.Converter;
+import de.jonasaugust.justfairmobilityapp.helpers.Time;
+import de.jonasaugust.justfairmobilityapp.helpers.compatability.DateCompat;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.buttons.ButtonDesigner;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.dialogs.DialogBuilder;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.toasts.ToastBuilder;
@@ -49,11 +67,16 @@ public class ReportProblemActivity extends ActivityRoot {
 
     // State
     private final ProblemReport problemReport = new ProblemReport();
+    private static int uploadedPictures = 0;
+    private UploadPicturesThread uploadPicturesThread;
+    private UploadReportThread uploadReportThread;
 
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        uploadedPictures = 0;
 
         back = findViewById(R.id.back);
         category = findViewById(R.id.category);
@@ -111,7 +134,7 @@ public class ReportProblemActivity extends ActivityRoot {
 
     @Override
     protected View[] getViewsToDisable() {
-        return new View[] {back};
+        return new View[] {back, category, location, photos, description, descriptionLayout, send};
     }
 
     @Override
@@ -178,6 +201,7 @@ public class ReportProblemActivity extends ActivityRoot {
     }
 
     private void deleteImageDialog(int index) {
+        if (!photos.isEnabled()) return;
         new DialogBuilder(R.string.delete, R.drawable.icon_baseline_delete_forever_24, this)
                 .addText(R.string.report_problem_photos_delete)
                 .setButtonShort(R.string.cancel, true, null)
@@ -240,8 +264,108 @@ public class ReportProblemActivity extends ActivityRoot {
             return;
         }
 
-        // TODO Store Report on Server
-        ToastBuilder.show(this, R.string.report_problem_success);
-        finish();
+        startLoading();
+
+        String[] photoIds = new String[problemReport.getPhotos().size()];
+        for (int i = 0; i < photoIds.length; i++) {
+            photoIds[i] = UUID.randomUUID().toString() + ".jpg";
+        }
+        uploadPicturesThread = new UploadPicturesThread(problemReport.getPhotos().toArray(new Bitmap[0]), photoIds);
+        uploadReportThread = new UploadReportThread(problemReport, photoIds, () -> {
+            ToastBuilder.show(this, R.string.report_problem_success);
+            finish();
+        });
+        uploadPicturesThread.start();
+        uploadReportThread.start();
+    }
+
+    private synchronized void incUploadCounter() {
+        uploadedPictures++;
+    }
+
+    private class UploadPicturesThread extends Thread {
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        private Bitmap[] bitmaps;
+        private String[] ids;
+
+        public UploadPicturesThread(Bitmap[] bitmaps, String[] ids) {
+            this.bitmaps = bitmaps;
+            this.ids = ids;
+            if (bitmaps.length != ids.length) throw new IllegalArgumentException();
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            for (int i = 0; i < bitmaps.length; i++) {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmaps[i].compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] data = baos.toByteArray();
+                StorageReference storageReference = storage.getReference().child(ids[i]);
+                storageReference.putBytes(data)
+                        .addOnSuccessListener(taskSnapshot -> incUploadCounter())
+                        .addOnFailureListener(ReportProblemActivity.this::onException);
+            }
+            System.out.println("Upload Pictures Finished");
+        }
+    }
+
+    private interface FinishedListener {void onFinished();}
+    private class UploadReportThread extends Thread {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        ProblemReport problemReport;
+        String[] photoIds;
+        FinishedListener finishedListener;
+
+        public UploadReportThread(ProblemReport problemReport, String[] photoIds, FinishedListener finishedListener) {
+            this.problemReport = problemReport;
+            this.photoIds = photoIds;
+            this.finishedListener = finishedListener;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+
+            Map<String, Object> data = new HashMap<>();
+
+            data.put("photos", (List<String>) Arrays.asList(photoIds));
+            data.put("description", problemReport.getDescription());
+            DateCompat dateCompat = new DateCompat();
+            data.put("date", (dateCompat.getDate() + 1) + "." + (dateCompat.getMonth() + 1) + "." + (dateCompat.getYear() + 1900));
+            data.put("location", new GeoPoint(problemReport.getLocation().latitude, problemReport.getLocation().longitude));
+            data.put("category", problemReport.getCategory());
+
+            System.out.println("Waiting for Pictures");
+
+            while (uploadedPictures < problemReport.getPhotos().size()) {
+                try {
+                    sleep(50);
+                } catch (InterruptedException e) {
+                    onException(e);
+                }
+            }
+
+            System.out.println("Waiting for Pictures Done");
+
+            DocumentReference docRef = db.collection("feedback").document(UUID.randomUUID().toString());
+
+            docRef.set(data)
+                    .addOnSuccessListener(aVoid -> finishedListener.onFinished())
+                    .addOnFailureListener(ReportProblemActivity.this::onException);
+
+        }
+    }
+
+    private void onException(Exception exception) {
+        uploadPicturesThread.stop();
+        uploadReportThread.stop();
+        uploadPicturesThread = null;
+        uploadReportThread = null;
+        ToastBuilder.show(this, exception);
+        stopLoading();
     }
 }
