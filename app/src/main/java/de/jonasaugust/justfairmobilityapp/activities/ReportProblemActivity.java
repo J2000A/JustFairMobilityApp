@@ -259,6 +259,8 @@ public class ReportProblemActivity extends ActivityRoot {
 
         startLoading();
 
+        problemReport.setDescription(description.getText() != null ? description.getText().toString() : "");
+
         String[] photoIds = new String[problemReport.getPhotos().size()];
         for (int i = 0; i < photoIds.length; i++) {
             photoIds[i] = UUID.randomUUID().toString() + ".jpg";
