@@ -18,24 +18,18 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
-import com.google.firebase.firestore.core.FirestoreClient;
-import com.google.firebase.firestore.remote.FirestoreChannel;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firestore.v1.WriteResult;
 
 import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +38,6 @@ import java.util.UUID;
 import de.jonasaugust.justfairmobilityapp.R;
 import de.jonasaugust.justfairmobilityapp.data.ProblemReport;
 import de.jonasaugust.justfairmobilityapp.helpers.Converter;
-import de.jonasaugust.justfairmobilityapp.helpers.Time;
 import de.jonasaugust.justfairmobilityapp.helpers.compatability.DateCompat;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.buttons.ButtonDesigner;
 import de.jonasaugust.justfairmobilityapp.helpers.view_builders.dialogs.DialogBuilder;
@@ -285,10 +278,10 @@ public class ReportProblemActivity extends ActivityRoot {
 
     private class UploadPicturesThread extends Thread {
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        private Bitmap[] bitmaps;
-        private String[] ids;
+        private final  FirebaseStorage storage = FirebaseStorage.getInstance();
+        private final StorageReference storageRef = storage.getReference();
+        private final Bitmap[] bitmaps;
+        private final String[] ids;
 
         public UploadPicturesThread(Bitmap[] bitmaps, String[] ids) {
             this.bitmaps = bitmaps;
@@ -300,9 +293,9 @@ public class ReportProblemActivity extends ActivityRoot {
         public void run() {
             super.run();
             for (int i = 0; i < bitmaps.length; i++) {
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmaps[i].compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmaps[i].compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] data = stream.toByteArray();
                 StorageReference storageReference = storage.getReference().child(ids[i]);
                 storageReference.putBytes(data)
                         .addOnSuccessListener(taskSnapshot -> incUploadCounter())
@@ -315,10 +308,10 @@ public class ReportProblemActivity extends ActivityRoot {
     private interface FinishedListener {void onFinished();}
     private class UploadReportThread extends Thread {
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        ProblemReport problemReport;
-        String[] photoIds;
-        FinishedListener finishedListener;
+        private final  FirebaseFirestore db = FirebaseFirestore.getInstance();
+        private final  ProblemReport problemReport;
+        private final String[] photoIds;
+        private final FinishedListener finishedListener;
 
         public UploadReportThread(ProblemReport problemReport, String[] photoIds, FinishedListener finishedListener) {
             this.problemReport = problemReport;
@@ -343,6 +336,7 @@ public class ReportProblemActivity extends ActivityRoot {
 
             while (uploadedPictures < problemReport.getPhotos().size()) {
                 try {
+                    //noinspection BusyWait
                     sleep(50);
                 } catch (InterruptedException e) {
                     onException(e);
