@@ -2,11 +2,11 @@
 
     <!-- View Report Activity -->
     <string name="view_report">View Reported Problem</string>
-    <string name="view_report_notification_dummy">2 new comments on your reported problem: Defective Elevator Königsplatz</string>
+    <string name="view_report_notification_dummy">2 New Comments on your reported problem: Defective Elevator Königsplatz</string>
 
     <!-- Answer Survey Activity -->
     <string name="answer_surveys">Answer Surveys</string>
-    <string name="answer_surveys_new_available">New Survey Available</string>
+    <string name="answer_surveys_new_available">New Survey available</string>
     <string name="answer_surveys_new_available_action">Answer Now</string>
 
     <!-- Report A Problem Activity -->
@@ -108,7 +108,7 @@
 
     <!-- Mobility Injustice Atlas -->
     <string name="atlas">Mobility Injustice Atlas</string>
-    <string name="atlas_url">http://jonasaugust.de/JustFairMobility</string>
+    <string name="atlas_url">https://Just-Fair-Mobility.web.app</string>
 
     <!-- GENERAL -->
     <string name="app_name">JustFairMobility</string>
