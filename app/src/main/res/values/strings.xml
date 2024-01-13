@@ -109,6 +109,10 @@
     <!-- Mobility Injustice Atlas -->
     <string name="atlas">Mobility Injustice Atlas</string>
     <string name="atlas_url">https://Just-Fair-Mobility.web.app</string>
+    <string name="privacy">Privacy / Datenschutz</string>
+    <string name="privacy_url">http://jonasaugust.de/JustFairMobility/privacy.html</string>
+    <string name="terms">Terms / AGB</string>
+    <string name="terms_url">http://jonasaugust.de/JustFairMobility/terms.html</string>
 
     <!-- GENERAL -->
     <string name="app_name">JustFairMobility</string>
