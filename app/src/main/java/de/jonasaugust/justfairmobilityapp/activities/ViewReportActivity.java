@@ -44,7 +44,7 @@ public class ViewReportActivity extends ActivityRoot {
 
     @Override
     protected boolean confirmBack() {
-        return true;
+        return false;
     }
 
     @Override

@@ -61,7 +61,7 @@ public class SettingsActivity extends ActivityRoot {
 
     @Override
     protected boolean confirmBack() {
-        return true;
+        return false;
     }
 
     @Override
