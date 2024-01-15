@@ -330,7 +330,7 @@ public class ReportProblemActivity extends ActivityRoot {
             data.put("photos", (List<String>) Arrays.asList(photoIds));
             data.put("description", problemReport.getDescription());
             DateCompat dateCompat = new DateCompat();
-            data.put("date", (dateCompat.getDate() + 1) + "." + (dateCompat.getMonth() + 1) + "." + (dateCompat.getYear() + 1900));
+            data.put("date", (dateCompat.getDate()) + "." + (dateCompat.getMonth() + 1) + "." + (dateCompat.getYear() + 1900));
             data.put("location", new GeoPoint(problemReport.getLocation().latitude, problemReport.getLocation().longitude));
             data.put("category", problemReport.getCategory());
 
